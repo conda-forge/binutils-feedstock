@@ -21,6 +21,7 @@ requirements:
     - {{ compiler('cxx') }}
     - bison
     - flex
+  host:
 
 test:
   commands:
