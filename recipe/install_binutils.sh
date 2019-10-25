@@ -1,5 +1,9 @@
 #!/bin/bash
 
+for file in ./crosstool_ng/packages/binutils/$PKG_VERSION/*.patch; do
+  patch -p1 < $file;
+done
+
 mkdir build
 cd build
 
