@@ -10,3 +10,9 @@ cd build
 ../configure --prefix="$PREFIX" --enable-gold --target=$HOST
 make -j${CPU_COUNT}
 make install-strip
+
+# Remove hardlinks and replace them by softlinks
+for tool in addr2line ar as c++filt elfedit gprof ld ld.bfd ld.gold nm objcopy objdump ranlib readelf size strings strip; do
+  rm -rf $PREFIX/$HOST/bin/$tool
+  ln -sf $PREFIX/bin/$HOST-$tool $PREFIX/$HOST/bin/$tool
+done
