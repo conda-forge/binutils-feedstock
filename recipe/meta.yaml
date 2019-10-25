@@ -1,7 +1,7 @@
 {% set name = "binutils" %}
 {% set version = "2.32" %}
 {% set sha256 = "de38b15c902eb2725eac6af21183a5f34ea4634cb0bcef19612b50e5ed31072d" %}
-{% set chost = ctng_cpu_arch + "-" + ctng_vendor + "-linux-gnu-" %}
+{% set chost = ctng_cpu_arch ~ "-" ~ ctng_vendor ~ "-linux-gnu-" %}
 
 package:
   name: binutils_split
@@ -94,4 +94,3 @@ extra:
   recipe-maintainers:
     - frol
     - isuruf
-
