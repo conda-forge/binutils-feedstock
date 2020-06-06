@@ -1,7 +1,7 @@
 {% set name = "binutils" %}
 {% set version = "2.34" %}
 {% set chost = ctng_cpu_arch ~ "-" ~ ctng_vendor ~ "-linux-gnu-" %}
-{% set build_num = 4 %}
+{% set build_num = 5 %}
 
 package:
   name: binutils_split
@@ -37,7 +37,9 @@ outputs:
     requirements:
       build:
       host:
+        - sysroot_{{ target_platform }} {{ sysroot_ver }} conda_variant_*
       run:
+        - sysroot_{{ target_platform }}
       run_constrained:
         - gcc_impl_{{ target_platform }} !=7.2.0,!=7.3.0,!=8.2.0,!=5.4.0
         - gxx_impl_{{ target_platform }} !=7.2.0,!=7.3.0,!=8.2.0,!=5.4.0
@@ -58,6 +60,7 @@ outputs:
       build:
       host:
         - ld_impl_{{ target_platform }} {{ version }}
+        - sysroot_{{ target_platform }} {{ sysroot_ver }} conda_variant_*
       run:
         - {{ pin_subpackage("ld_impl_" ~ target_platform, exact=True) }}
         - sysroot_{{ target_platform }}

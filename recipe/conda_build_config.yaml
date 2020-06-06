@@ -6,3 +6,6 @@ ctng_cpu_arch:
 ctng_vendor:
   - conda_cos6  # [linux32 or linux64]
   - conda_cos7  # [aarch64 or ppc64le]
+sysroot_ver:
+  - 2.12  # [linux32 or linux64]
+  - 2.17  # [aarch64 or ppc64le]
