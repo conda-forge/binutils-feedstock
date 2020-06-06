@@ -12,5 +12,7 @@ ctng_cpu_arch:
 - aarch64
 docker_image:
 - condaforge/linux-anvil-aarch64
+sysroot_ver:
+- '2.17'
 target_platform:
 - linux-aarch64
