@@ -13,4 +13,3 @@ mkdir -p $PREFIX/bin
 cp $PWD/install/$PREFIX/bin/$CHOST-ld $PREFIX/bin/$CHOST-ld
 
 ln -s $PREFIX/bin/$CHOST-ld $PREFIX/bin/$OLD_CHOST-ld
-ln -s $PREFIX/bin/$CHOST-ld $PREFIX/$CHOST/bin/ld
