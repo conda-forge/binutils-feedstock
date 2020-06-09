@@ -67,9 +67,9 @@ outputs:
         - gxx_impl_{{ target_platform }} !=7.2.0,!=7.3.0,!=8.2.0,!=5.4.0
         - gfortran_impl_{{ target_platform }} !=7.2.0,!=7.3.0,!=8.2.0,!=5.4.0
     test:
-      downstreams:
-        - gfortran_impl_{{ target_platform }}
-        - gcc_impl_{{ target_platform }}
+      # downstreams:
+      #   - gfortran_impl_{{ target_platform }}
+      #   - gcc_impl_{{ target_platform }}
       commands:
         - {{ chost }}addr2line --help
         - {{ chost }}ar --help
