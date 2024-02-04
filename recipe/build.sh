@@ -73,16 +73,6 @@ if [[ "$target_platform" == linux-* ]]; then
   export LDFLAGS="$LDFLAGS -static-libstdc++ -static-libgcc"
 fi
 
-# Workaround a problem in conda-build. xref https://github.com/conda/conda-build/pull/4253
-if [[ -d $BUILD_PREFIX/$HOST/sysroot/usr/lib64 && ! -d $BUILD_PREFIX/$HOST/sysroot/usr/lib ]]; then
-  mkdir -p $BUILD_PREFIX/$HOST/sysroot/usr
-  ln -sf $BUILD_PREFIX/$HOST/sysroot/usr/lib64 $BUILD_PREFIX/$HOST/sysroot/usr/lib
-fi
-if [[ -d $BUILD_PREFIX/$HOST/sysroot/lib64 && ! -d $BUILD_PREFIX/$HOST/sysroot/lib ]]; then
-  mkdir -p $BUILD_PREFIX/$HOST/sysroot
-  ln -sf $BUILD_PREFIX/$HOST/sysroot/lib64 $BUILD_PREFIX/$HOST/sysroot/lib
-fi
-
 ../configure \
   --prefix="$PREFIX" \
   --build=$BUILD \
