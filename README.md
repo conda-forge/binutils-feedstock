@@ -1,11 +1,11 @@
-About binutils_split
-====================
+About binutils_split-feedstock
+==============================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/binutils-feedstock/blob/main/LICENSE.txt)
 
 Home: https://www.gnu.org/software/binutils/
 
 Package license: GPL-3.0-only
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/binutils-feedstock/blob/main/LICENSE.txt)
 
 Summary: A set of programming tools for creating and managing binary programs, object files,
 libraries, profile data, and assembly source code.
