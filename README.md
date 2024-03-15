@@ -1,11 +1,11 @@
-About binutils_split
-====================
+About binutils_split-feedstock
+==============================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/binutils-feedstock/blob/main/LICENSE.txt)
 
 Home: https://www.gnu.org/software/binutils/
 
 Package license: GPL-3.0-only
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/binutils-feedstock/blob/main/LICENSE.txt)
 
 Summary: A set of programming tools for creating and managing binary programs, object files,
 libraries, profile data, and assembly source code.
@@ -15,14 +15,7 @@ Current build status
 ====================
 
 
-<table><tr>
-    <td>Travis</td>
-    <td>
-      <a href="https://app.travis-ci.com/conda-forge/binutils-feedstock">
-        <img alt="linux" src="https://img.shields.io/travis/com/conda-forge/binutils-feedstock/main.svg?label=Linux">
-      </a>
-    </td>
-  </tr>
+<table>
     
   <tr>
     <td>Azure</td>
@@ -264,7 +257,7 @@ available continuous integration services. Thanks to the awesome service provide
 [CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/),
 [Drone](https://cloud.drone.io/welcome), and [TravisCI](https://travis-ci.com/)
 it is possible to build and upload installable packages to the
-[conda-forge](https://anaconda.org/conda-forge) [Anaconda-Cloud](https://anaconda.org/)
+[conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
 To manage the continuous integration and simplify feedstock maintenance
