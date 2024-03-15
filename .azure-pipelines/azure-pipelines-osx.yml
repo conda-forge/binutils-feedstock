@@ -21,6 +21,7 @@ jobs:
         CONFIG: osx_64_ctng_cpu_archx86_64ctng_target_platformlinux-64ctng_vendorconda_cos6
         UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
+  variables: {}
 
   steps:
   # TODO: Fast finish on azure pipelines?
