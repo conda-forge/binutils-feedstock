@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 CHOST="${triplet}"
 
@@ -9,7 +10,7 @@ if [[ "cross_target_platform" == "linux-"* ]]; then
   ln -s "$PREFIX/bin/ld.gold" "$PREFIX/bin/gold"
 fi
 
-for tool in $TOOL; do
+for tool in $TOOLS; do
   rm $PREFIX/bin/$CHOST-$tool
   touch $PREFIX/bin/$CHOST-$tool
   ln -s $PREFIX/bin/$CHOST-$tool $PREFIX/bin/$tool
