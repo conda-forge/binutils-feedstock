@@ -8,24 +8,31 @@ jobs:
     vmImage: macOS-11
   strategy:
     matrix:
-      osx_64_ctng_cpu_archaarch64ctng_target_platformlinux-aarch64ctng_vendorconda_cos7:
-        CONFIG: osx_64_ctng_cpu_archaarch64ctng_target_platformlinux-aarch64ctng_vendorconda_cos7
+      osx_64_cross_target_platformlinux-64ctng_vendorconda_cos6tripletx86_64-conda-linux-gnu:
+        CONFIG: osx_64_cross_target_platformlinux-64ctng_vendorconda_cos6tripletx86_64-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
-      osx_64_ctng_cpu_archpowerpc64lectng_target_platformlinux-ppc64lectng_vendorconda_cos7:
-        CONFIG: osx_64_ctng_cpu_archpowerpc64lectng_target_platformlinux-ppc64lectng_vendorconda_cos7
+      osx_64_cross_target_platformlinux-aarch64ctng_vendorconda_cos7tripletaarch64-conda-linux-gnu:
+        CONFIG: osx_64_cross_target_platformlinux-aarch64ctng_vendorconda_cos7tripletaarch64-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
-      osx_64_ctng_cpu_archs390xctng_target_platformlinux-s390xctng_vendorconda_cos7:
-        CONFIG: osx_64_ctng_cpu_archs390xctng_target_platformlinux-s390xctng_vendorconda_cos7
+      osx_64_cross_target_platformlinux-ppc64lectng_vendorconda_cos7tripletpowerpc64le-conda-linux-gnu:
+        CONFIG: osx_64_cross_target_platformlinux-ppc64lectng_vendorconda_cos7tripletpowerpc64le-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
-      osx_64_ctng_cpu_archx86_64ctng_target_platformlinux-64ctng_vendorconda_cos6:
-        CONFIG: osx_64_ctng_cpu_archx86_64ctng_target_platformlinux-64ctng_vendorconda_cos6
+      osx_64_cross_target_platformlinux-s390xctng_vendorconda_cos7triplets390x-conda-linux-gnu:
+        CONFIG: osx_64_cross_target_platformlinux-s390xctng_vendorconda_cos7triplets390x-conda-linux-gnu
+        UPLOAD_PACKAGES: 'True'
+      osx_64_cross_target_platformwin-64ctng_vendornonetripletx86_64-w64-mingw32:
+        CONFIG: osx_64_cross_target_platformwin-64ctng_vendornonetripletx86_64-w64-mingw32
         UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
+  variables: {}
 
   steps:
   # TODO: Fast finish on azure pipelines?
   - script: |
       export CI=azure
+      export flow_run_id=azure_$(Build.BuildNumber).$(System.JobAttempt)
+      export remote_url=$(Build.Repository.Uri)
+      export sha=$(Build.SourceVersion)
       export OSX_FORCE_SDK_DOWNLOAD="1"
       export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
       export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
