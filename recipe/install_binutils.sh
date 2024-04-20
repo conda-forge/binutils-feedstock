@@ -6,7 +6,7 @@ cd build
 
 make install-strip
 export HOST="${triplet}"
-export OLD_HOST="${triplet/conda/${ctng_cpu_vendor}}"
+export OLD_HOST="${triplet/conda/${ctng_vendor}}"
 mkdir -p $PREFIX/$OLD_HOST/bin
 
 # Remove hardlinks and replace them by softlinks
