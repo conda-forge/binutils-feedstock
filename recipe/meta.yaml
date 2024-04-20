@@ -1,6 +1,5 @@
 {% set name = "binutils" %}
 {% set version = "2.40" %}
-{% set chost = ctng_cpu_arch ~ "-" ~ ctng_vendor ~ "-linux-gnu-" %}
 
 package:
   name: binutils_split
@@ -25,7 +24,7 @@ requirements:
   run:
 
 outputs:
-  - name: ld_impl_{{ ctng_target_platform }}
+  - name: ld_impl_{{ cross_target_platform }}
     script: install_ld.sh
     build:
       merge_build_host: false
@@ -38,14 +37,14 @@ outputs:
       host:
       run:
       run_constrained:
-        - binutils_impl_{{ ctng_target_platform }} {{ version }}
+        - binutils_impl_{{ cross_target_platform }} {{ version }}
     test:
       commands:
-        - {{ chost }}ld --help
+        - {{ triplet }}-ld --help
         - echo "{{ ctng_vendor }}"
         - echo {{ c_compiler_version }}
 
-  - name: binutils_impl_{{ ctng_target_platform }}
+  - name: binutils_impl_{{ cross_target_platform }}
     script: install_binutils.sh
     build:
       merge_build_host: false
@@ -58,32 +57,32 @@ outputs:
       build:
         - {{ compiler('cxx') }}
       host:
-        - ld_impl_{{ ctng_target_platform }} {{ version }}
+        - ld_impl_{{ cross_target_platform }} {{ version }}
       run:
-        - {{ pin_subpackage("ld_impl_" ~ ctng_target_platform, exact=True) }}
-        - sysroot_{{ ctng_target_platform }}
+        - {{ pin_subpackage("ld_impl_" ~ cross_target_platform, exact=True) }}
+        - sysroot_{{ cross_target_platform }}  # [cross_target_platform != "win-64"]
     test:
       downstreams:
-        - gfortran_impl_{{ ctng_target_platform }}
-        - gcc_impl_{{ ctng_target_platform }}
+        - gfortran_impl_{{ cross_target_platform }}
+        - gcc_impl_{{ cross_target_platform }}
       commands:
-        - {{ chost }}addr2line --help
-        - {{ chost }}ar --help
-        - {{ chost }}as --help
-        - {{ chost }}c++filt --help
-        - {{ chost }}elfedit --help
-        - {{ chost }}gprof --help
-        - {{ chost }}ld --help
-        - {{ chost }}ld.bfd --help
-        - {{ chost }}ld.gold --help
-        - {{ chost }}nm --help
-        - {{ chost }}objcopy --help
-        - {{ chost }}objdump --help
-        - {{ chost }}ranlib --help
-        - {{ chost }}readelf --help
-        - {{ chost }}size --help
-        - {{ chost }}strings --help
-        - {{ chost }}strip --help
+        - {{ triplet }}-addr2line --help
+        - {{ triplet }}-ar --help
+        - {{ triplet }}-as --help
+        - {{ triplet }}-c++filt --help
+        - {{ triplet }}-elfedit --help
+        - {{ triplet }}-gprof --help
+        - {{ triplet }}-ld --help
+        - {{ triplet }}-ld.bfd --help
+        - {{ triplet }}-ld.gold --help  # [cross_target_platform != "win-64"]
+        - {{ triplet }}-nm --help
+        - {{ triplet }}-objcopy --help
+        - {{ triplet }}-objdump --help
+        - {{ triplet }}-ranlib --help
+        - {{ triplet }}-readelf --help
+        - {{ triplet }}-size --help
+        - {{ triplet }}-strings --help
+        - {{ triplet }}-strip --help
         - echo {{ c_compiler_version }}
 
   - name: binutils
@@ -91,13 +90,13 @@ outputs:
     build:
       merge_build_host: false
       detect_binary_files_with_prefix: false
-      skip: true  # [ctng_target_platform != target_platform]
+      skip: true  # [cross_target_platform != target_platform]
     requirements:
       build:
       host:
-        - binutils_impl_{{ ctng_target_platform }}
+        - binutils_impl_{{ cross_target_platform }}
       run:
-        - {{ pin_subpackage("binutils_impl_" ~ ctng_target_platform, max_pin="x.x.x") }}
+        - {{ pin_subpackage("binutils_impl_" ~ cross_target_platform, max_pin="x.x.x") }}
         - libcxx >=4.0.0  # [osx]
     test:
       commands:
@@ -106,11 +105,11 @@ outputs:
         - $PREFIX/bin/as --help
         - $PREFIX/bin/c++filt --help
         - $PREFIX/bin/elfedit --help
-        - $PREFIX/bin/gold --help
+        - $PREFIX/bin/gold --help  # [cross_target_platform != "win-64"]
         - $PREFIX/bin/gprof --help
         - $PREFIX/bin/ld --help
         - $PREFIX/bin/ld.bfd --help
-        - $PREFIX/bin/ld.gold --help
+        - $PREFIX/bin/ld.gold --help  # [cross_target_platform != "win-64"]
         - $PREFIX/bin/nm --help
         - $PREFIX/bin/objcopy --help
         - $PREFIX/bin/objdump --help

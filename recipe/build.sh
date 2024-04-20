@@ -38,6 +38,8 @@ get_triplet() {
     echo "x86_64-apple-darwin13.4.0"
   elif [[ "$1" == osx-arm64 ]]; then
     echo "arm64-apple-darwin20.0.0"
+  elif [[ "$1" == win-64 ]]; then
+    echo "x86_64-w64-mingw32"
   else
     echo "unknown platform"
   fi
@@ -62,11 +64,13 @@ if [[ "$target_platform" == osx-* ]]; then
   export LDFLAGS="$LDFLAGS -Wl,-pie -Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs -arch ${OSX_ARCH}"
 fi
 
-export LDFLAGS="$LDFLAGS -Wl,-rpath,$PREFIX/lib"
+if [[ "$target_platform" == osx-* || "$target_platform" == linux-* ]]; then
+  export LDFLAGS="$LDFLAGS -Wl,-rpath,$PREFIX/lib"
+fi
 
 export BUILD="$(get_triplet $build_platform)"
 export HOST="$(get_triplet $target_platform)"
-export TARGET="$(get_triplet $ctng_target_platform)"
+export TARGET="$(get_triplet $cross_target_platform)"
 
 if [[ "$target_platform" == linux-* ]]; then
   # Since we might not have libgcc-ng packaged yet, let's statically link in libgcc
