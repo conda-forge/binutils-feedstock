@@ -1,17 +1,24 @@
 #!/bin/bash
 set -x
 
-CHOST="${triplet}"
+TARGET="${triplet}"
+
+if [[ "${target_platform}" == win-* ]]; then
+  EXEEXT=".exe"
+  PREFIX=${PREFIX}/Library
+fi
 
 TOOLS="addr2line ar as c++filt elfedit gprof ld ld.bfd nm objcopy objdump ranlib readelf size strings strip"
 
-if [[ "$cross_target_platform" == "linux-"* ]]; then
+if [[ "${cross_target_platform}" == "linux-"* ]]; then
   TOOLS="${TOOLS} dwp ld.gold"
-  ln -s "$PREFIX/bin/ld.gold" "$PREFIX/bin/gold"
+  ln -s "${PREFIX}/bin/ld.gold${EXEEXT}" "${PREFIX}/bin/gold${EXEEXT}"
+else
+  TOOLS="${TOOLS} dlltool"
 fi
 
-for tool in $TOOLS; do
-  rm $PREFIX/bin/$CHOST-$tool
-  touch $PREFIX/bin/$CHOST-$tool
-  ln -s $PREFIX/bin/$CHOST-$tool $PREFIX/bin/$tool
+for tool in ${TOOLS}; do
+  rm ${PREFIX}/bin/${TARGET}-${tool}${EXEEXT}
+  touch ${PREFIX}/bin/${TARGET}-${tool}${EXEEXT}
+  ln -s ${PREFIX}/bin/${TARGET}-${tool}${EXEEXT} ${PREFIX}/bin/${tool}${EXEEXT}
 done

@@ -2,30 +2,52 @@
 
 set -e
 
-cd build
+cd install
 
-make install-strip
-export HOST="${triplet}"
-export OLD_HOST="${triplet/conda/${ctng_vendor}}"
-mkdir -p $PREFIX/$OLD_HOST/bin
+find . -type f -exec bash -c 'mkdir -p /$(dirname {}) && cp {} /{}' ';'
+
+export TARGET="${triplet}"
+export OLD_TARGET="${triplet/conda/${ctng_vendor}}"
+
+if [[ "${target_platform}" == win-* ]]; then
+  EXEEXT=".exe"
+  PREFIX=${PREFIX}/Library
+  SYSROOT=${PREFIX}/ucrt64
+  OLD_SYSROOT=${PREFIX}/ucrt64
+else
+  SYSROOT=${PREFIX}/${TARGET}
+  OLDSYSROOT=${PREFIX}/${OLD_TARGET}
+fi
+
+mkdir -p ${PREFIX}/bin
+mkdir -p ${SYSROOT}/bin
+mkdir -p ${OLD_SYSROOT}/bin
+
+TOOLS="addr2line ar as c++filt elfedit gprof ld.bfd nm objcopy objdump ranlib readelf size strings strip"
+
+if [[ "${cross_target_platform}" == "linux-"* ]]; then
+  TOOLS="${TOOLS} dwp ld.gold"
+else
+  TOOLS="${TOOLS} dlltool"
+fi
 
 # Remove hardlinks and replace them by softlinks
-for tool in addr2line ar as c++filt dwp elfedit gprof ld.bfd ld.gold nm objcopy objdump ranlib readelf size strings strip; do
-  rm -rf $PREFIX/$HOST/bin/$tool
-  ln -s $PREFIX/bin/$HOST-$tool $PREFIX/$HOST/bin/$tool || true;
-  if [[ "$HOST" != "$OLD_HOST" ]]; then
-    ln -s $PREFIX/bin/$HOST-$tool $PREFIX/$OLD_HOST/bin/$tool || true;
-    ln -s $PREFIX/bin/$HOST-$tool $PREFIX/bin/$OLD_HOST-$tool || true;
+for tool in ${TOOLS}; do
+  tool=${tool}${EXEEXT}
+  rm -rf ${SYSROOT}/bin/${tool}
+  ln -s ${PREFIX}/bin/${TARGET}-${tool} ${SYSROOT}/bin/${tool} || true;
+  if [[ "${TARGET}" != "$OLD_TARGET" ]]; then
+    ln -s ${PREFIX}/bin/${TARGET}-${tool} ${OLD_SYSROOT}/bin/${tool} || true;
+    ln -s ${PREFIX}/bin/${TARGET}-${tool} ${PREFIX}/bin/$OLD_TARGET-${tool} || true;
   fi
   if [[ "$target_platform" == "$cross_target_platform" ]]; then
-      mv $PREFIX/bin/$tool $PREFIX/bin/$HOST-$tool
+      mv ${PREFIX}/bin/${tool} ${PREFIX}/bin/${TARGET}-${tool}
   fi
 done
 
-rm $PREFIX/bin/ld || true;
-rm $PREFIX/bin/$HOST-ld || true;
-rm $PREFIX/bin/$OLD_HOST-ld || true;
-rm $PREFIX/$OLD_HOST/bin/ld || true;
-rm $PREFIX/$HOST/bin/ld || true;
+rm ${PREFIX}/bin/ld${EXEEXT} || true;
+rm ${PREFIX}/bin/${TARGET}-ld${EXEEXT} || true;
+rm ${PREFIX}/bin/$OLD_TARGET-ld${EXEEXT} || true;
+rm ${OLD_SYSROOT}/bin/ld${EXEEXT} || true;
+rm ${SYSROOT}/bin/ld${EXEEXT} || true;
 
-#ln -s $PREFIX/$HOST $PREFIX/$OLD_HOST
