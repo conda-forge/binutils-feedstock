@@ -48,6 +48,26 @@ jobs:
         CONFIG: linux_s390x_cross_target_platformwin-64ctng_vendornonetripletx86_64-w64-mingw32
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      win_64_cross_target_platformlinux-64ctng_vendorconda_cos6tripletx86_64-conda-linux-gnu:
+        CONFIG: win_64_cross_target_platformlinux-64ctng_vendorconda_cos6tripletx86_64-conda-linux-gnu
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      win_64_cross_target_platformlinux-aarch64ctng_vendorconda_cos7tripletaarch64-conda-linux-gnu:
+        CONFIG: win_64_cross_target_platformlinux-aarch64ctng_vendorconda_cos7tripletaarch64-conda-linux-gnu
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      win_64_cross_target_platformlinux-ppc64lectng_vendorconda_cos7tripletpowerpc64le-conda-linux-gnu:
+        CONFIG: win_64_cross_target_platformlinux-ppc64lectng_vendorconda_cos7tripletpowerpc64le-conda-linux-gnu
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      win_64_cross_target_platformlinux-s390xctng_vendorconda_cos7triplets390x-conda-linux-gnu:
+        CONFIG: win_64_cross_target_platformlinux-s390xctng_vendorconda_cos7triplets390x-conda-linux-gnu
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      win_64_cross_target_platformwin-64ctng_vendornonetripletx86_64-w64-mingw32:
+        CONFIG: win_64_cross_target_platformwin-64ctng_vendornonetripletx86_64-w64-mingw32
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
   timeoutInMinutes: 360
   variables: {}
 
