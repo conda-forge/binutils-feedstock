@@ -1,7 +1,3 @@
-c_compiler:
-- gcc
-c_compiler_version:
-- '12'
 cdt_name:
 - cos7
 channel_sources:
@@ -23,8 +19,6 @@ target_platform:
 triplet:
 - x86_64-w64-mingw32
 zip_keys:
-- - c_compiler_version
-  - cxx_compiler_version
 - - triplet
   - ctng_vendor
   - cross_target_platform

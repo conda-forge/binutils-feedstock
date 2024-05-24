@@ -211,34 +211,6 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>win_64_cross_target_platformlinux-64ctng_vendorconda_cos6tripletx86_64-conda-linux-gnu</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3695&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/binutils-feedstock?branchName=main&jobName=win&configuration=win%20win_64_cross_target_platformlinux-64ctng_vendorconda_cos6tripletx86_64-conda-linux-gnu" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_cross_target_platformlinux-aarch64ctng_vendorconda_cos7tripletaarch64-conda-linux-gnu</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3695&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/binutils-feedstock?branchName=main&jobName=win&configuration=win%20win_64_cross_target_platformlinux-aarch64ctng_vendorconda_cos7tripletaarch64-conda-linux-gnu" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_cross_target_platformlinux-ppc64lectng_vendorconda_cos7tripletpowerpc64le-conda-linux-gnu</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3695&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/binutils-feedstock?branchName=main&jobName=win&configuration=win%20win_64_cross_target_platformlinux-ppc64lectng_vendorconda_cos7tripletpowerpc64le-conda-linux-gnu" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_cross_target_platformlinux-s390xctng_vendorconda_cos7triplets390x-conda-linux-gnu</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3695&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/binutils-feedstock?branchName=main&jobName=win&configuration=win%20win_64_cross_target_platformlinux-s390xctng_vendorconda_cos7triplets390x-conda-linux-gnu" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
               <td>win_64_cross_target_platformwin-64ctng_vendornonetripletx86_64-w64-mingw32</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3695&branchName=main">
