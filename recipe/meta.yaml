@@ -19,6 +19,7 @@ build:
 requirements:
   build:
     - {{ compiler('cxx') }}   # [not win]
+    - {{ stdlib('c') }}       # [not win]
     - gcc_impl_{{ build_platform }}   # [win]
     - gcc_impl_{{ target_platform }}  # [win]
     - make                    # [osx]
@@ -36,6 +37,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}   # [not win]
+        - {{ stdlib('c') }}       # [not win]
       host:
       run:
       run_constrained:
@@ -57,6 +59,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}   # [not win]
+        - {{ stdlib('c') }}       # [not win]
       host:
         - ld_impl_{{ cross_target_platform }} {{ version }}
       run:
