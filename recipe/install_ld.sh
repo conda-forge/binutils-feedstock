@@ -2,22 +2,31 @@
 
 set -e
 
-cd build
+TARGET="${triplet}"
+OLD_TARGET="${triplet/conda/${ctng_vendor}}"
 
-make DESTDIR=$PWD/install install-strip
-
-CHOST="${triplet}"
-OLD_CHOST="${triplet/conda/${ctng_vendor}}"
-mkdir -p $PREFIX/bin
-mkdir -p $PREFIX/$OLD_CHOST/bin
-mkdir -p $PREFIX/$CHOST/bin
-if [[ "$target_platform" == "$cross_target_platform" ]]; then
-  cp $PWD/install/$PREFIX/bin/ld $PREFIX/bin/$CHOST-ld
+if [[ "$target_platform" == win-* ]]; then
+  EXEEXT=".exe"
+  PREFIX=$PREFIX/Library
+  SYSROOT=$PREFIX/ucrt64
+  OLD_SYSROOT=$PREFIX/ucrt64
 else
-  cp $PWD/install/$PREFIX/bin/$CHOST-ld $PREFIX/bin/$CHOST-ld
+  SYSROOT=$PREFIX/${TARGET}
+  OLD_SYSROOT=$PREFIX/${OLD_TARGET}
 fi
-if [[ "$CHOST" != "$OLD_CHOST" ]]; then
-  ln -s $PREFIX/bin/$CHOST-ld $PREFIX/bin/$OLD_CHOST-ld
-  ln -s $PREFIX/bin/$CHOST-ld $PREFIX/$OLD_CHOST/bin/ld
+
+mkdir -p $PREFIX/bin
+mkdir -p $OLD_SYSROOT/bin
+mkdir -p $SYSROOT/bin
+
+if [[ "$target_platform" == "$cross_target_platform" ]]; then
+  cp $PWD/install/$PREFIX/bin/ld${EXEEXT} $PREFIX/bin/$TARGET-ld${EXEEXT}
+else
+  cp $PWD/install/$PREFIX/bin/$TARGET-ld${EXEEXT} $PREFIX/bin/$TARGET-ld${EXEEXT}
 fi
-ln -s $PREFIX/bin/$CHOST-ld $PREFIX/$CHOST/bin/ld
+
+if [[ "$TARGET" != "$OLD_TARGET" ]]; then
+  ln -s $PREFIX/bin/$TARGET-ld${EXEEXT} $PREFIX/bin/$OLD_TARGET-ld${EXEEXT}
+  ln -s $PREFIX/bin/$TARGET-ld${EXEEXT} $OLD_SYSROOT/bin/ld${EXEEXT}
+fi
+ln -s $PREFIX/bin/$TARGET-ld${EXEEXT} $SYSROOT/bin/ld${EXEEXT}

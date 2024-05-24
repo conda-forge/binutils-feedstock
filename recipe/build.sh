@@ -45,12 +45,25 @@ get_triplet() {
   fi
 }
 
+export BUILD="$(get_triplet $build_platform)"
+export HOST="$(get_triplet $target_platform)"
+export TARGET="$(get_triplet $cross_target_platform)"
+
 # Fix permissions on license files--not sure why these are world-writable, but that's how
 # they come from the upstream tarball
 chmod og-w COPYING*
 
 mkdir build
 cd build
+
+if [[ "$target_platform" == win-* ]]; then
+  PREFIX=$PREFIX/Library
+  TARGET_SYSROOT_DIR=$PREFIX/Library/ucrt64
+  export CC=$BUILD_PREFIX/bin/$HOST-cc
+  export CC_FOR_BUILD=$BUILD_PREFIX/bin/$BUILD-cc
+else
+  TARGET_SYSROOT_DIR=$PREFIX/$TARGET/sysroot
+fi
 
 if [[ "$target_platform" == osx-arm64 ]]; then
   OSX_ARCH="arm64"
@@ -68,11 +81,7 @@ if [[ "$target_platform" == osx-* || "$target_platform" == linux-* ]]; then
   export LDFLAGS="$LDFLAGS -Wl,-rpath,$PREFIX/lib"
 fi
 
-export BUILD="$(get_triplet $build_platform)"
-export HOST="$(get_triplet $target_platform)"
-export TARGET="$(get_triplet $cross_target_platform)"
-
-if [[ "$target_platform" == linux-* ]]; then
+if [[ "$target_platform" == linux-* || "$target_platform" == win-* ]]; then
   # Since we might not have libgcc-ng packaged yet, let's statically link in libgcc
   export LDFLAGS="$LDFLAGS -static-libstdc++ -static-libgcc"
 fi
@@ -91,9 +100,9 @@ fi
   --disable-nls \
   --disable-gprofng \
   --enable-default-pie \
-  --with-sysroot=$PREFIX/$HOST/sysroot \
-  $CONFIG_ARGS || (cat config.log; false)
+  --with-sysroot=${TARGET_SYSROOT_DIR} \
+  || (cat config.log; false)
 
 make -j${CPU_COUNT}
-
+make install-strip DESTDIR=$SRC_DIR/install
 #exit 1

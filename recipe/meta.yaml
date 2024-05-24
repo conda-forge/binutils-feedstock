@@ -12,13 +12,16 @@ source:
       - patches/0001-fallback-sysroot.diff
 
 build:
-  number: 0
-  skip: true  # [win]
+  number: 1
+  skip: True  # [win64 and cross_target_platform != "win-64"]
   detect_binary_files_with_prefix: false
 
 requirements:
   build:
-    - {{ compiler('cxx') }}
+    - {{ compiler('cxx') }}   # [not win]
+    - {{ stdlib('c') }}       # [not win]
+    - gcc_impl_{{ build_platform }}   # [win]
+    - gcc_impl_{{ target_platform }}  # [win]
     - make                    # [osx]
   host:
   run:
@@ -29,11 +32,12 @@ outputs:
     build:
       merge_build_host: false
       detect_binary_files_with_prefix: false
-      ignore_run_exports_from:   # [linux]
+      ignore_run_exports_from:    # [linux]
         - {{ compiler('cxx') }}   # [linux]
     requirements:
       build:
-        - {{ compiler('cxx') }}
+        - {{ compiler('cxx') }}   # [not win]
+        - {{ stdlib('c') }}       # [not win]
       host:
       run:
       run_constrained:
@@ -42,7 +46,6 @@ outputs:
       commands:
         - {{ triplet }}-ld --help
         - echo "{{ ctng_vendor }}"
-        - echo {{ c_compiler_version }}
 
   - name: binutils_impl_{{ cross_target_platform }}
     script: install_binutils.sh
@@ -51,11 +54,12 @@ outputs:
       detect_binary_files_with_prefix: false
       ignore_run_exports:
         - __glibc
-      ignore_run_exports_from:   # [linux]
+      ignore_run_exports_from:    # [linux]
         - {{ compiler('cxx') }}   # [linux]
     requirements:
       build:
-        - {{ compiler('cxx') }}
+        - {{ compiler('cxx') }}   # [not win]
+        - {{ stdlib('c') }}       # [not win]
       host:
         - ld_impl_{{ cross_target_platform }} {{ version }}
       run:
@@ -83,7 +87,6 @@ outputs:
         - {{ triplet }}-size --help
         - {{ triplet }}-strings --help
         - {{ triplet }}-strip --help
-        - echo {{ c_compiler_version }}
 
   - name: binutils
     script: install_binutils_symlinks.sh
@@ -97,7 +100,6 @@ outputs:
         - binutils_impl_{{ cross_target_platform }}
       run:
         - {{ pin_subpackage("binutils_impl_" ~ cross_target_platform, max_pin="x.x.x") }}
-        - libcxx >=4.0.0  # [osx]
     test:
       commands:
         - $PREFIX/bin/addr2line --help
