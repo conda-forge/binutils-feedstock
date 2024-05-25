@@ -1,0 +1,18 @@
+channel_sources:
+- conda-forge/label/m2w64-experimental,conda-forge
+channel_targets:
+- conda-forge main
+cross_target_platform:
+- win-64
+ctng_vendor:
+- none
+docker_image:
+- quay.io/condaforge/linux-anvil-cos7-x86_64
+target_platform:
+- win-64
+triplet:
+- x86_64-w64-mingw32
+zip_keys:
+- - triplet
+  - ctng_vendor
+  - cross_target_platform

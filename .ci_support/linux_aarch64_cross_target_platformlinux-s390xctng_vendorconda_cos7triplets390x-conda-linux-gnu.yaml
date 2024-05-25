@@ -1,17 +1,19 @@
-c_compiler:
-- gcc
-c_compiler_version:
-- '12'
+BUILD:
+- aarch64-conda_cos7-linux-gnu
+c_stdlib:
+- sysroot
+c_stdlib_version:
+- '2.17'
+cdt_arch:
+- aarch64
 cdt_name:
 - cos7
 channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
-ctng_cpu_arch:
-- powerpc64le
-ctng_target_platform:
-- linux-ppc64le
+cross_target_platform:
+- linux-s390x
 ctng_vendor:
 - conda_cos7
 cxx_compiler:
@@ -21,10 +23,12 @@ cxx_compiler_version:
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 target_platform:
-- linux-ppc64le
+- linux-aarch64
+triplet:
+- s390x-conda-linux-gnu
 zip_keys:
-- - c_compiler_version
-  - cxx_compiler_version
-- - ctng_cpu_arch
+- - c_stdlib_version
+  - cdt_name
+- - triplet
   - ctng_vendor
-  - ctng_target_platform
+  - cross_target_platform

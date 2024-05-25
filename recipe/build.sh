@@ -38,10 +38,16 @@ get_triplet() {
     echo "x86_64-apple-darwin13.4.0"
   elif [[ "$1" == osx-arm64 ]]; then
     echo "arm64-apple-darwin20.0.0"
+  elif [[ "$1" == win-64 ]]; then
+    echo "x86_64-w64-mingw32"
   else
     echo "unknown platform"
   fi
 }
+
+export BUILD="$(get_triplet $build_platform)"
+export HOST="$(get_triplet $target_platform)"
+export TARGET="$(get_triplet $cross_target_platform)"
 
 # Fix permissions on license files--not sure why these are world-writable, but that's how
 # they come from the upstream tarball
@@ -49,6 +55,15 @@ chmod og-w COPYING*
 
 mkdir build
 cd build
+
+if [[ "$target_platform" == win-* ]]; then
+  PREFIX=$PREFIX/Library
+  TARGET_SYSROOT_DIR=$PREFIX/Library/ucrt64
+  export CC=$BUILD_PREFIX/bin/$HOST-cc
+  export CC_FOR_BUILD=$BUILD_PREFIX/bin/$BUILD-cc
+else
+  TARGET_SYSROOT_DIR=$PREFIX/$TARGET/sysroot
+fi
 
 if [[ "$target_platform" == osx-arm64 ]]; then
   OSX_ARCH="arm64"
@@ -62,25 +77,13 @@ if [[ "$target_platform" == osx-* ]]; then
   export LDFLAGS="$LDFLAGS -Wl,-pie -Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs -arch ${OSX_ARCH}"
 fi
 
-export LDFLAGS="$LDFLAGS -Wl,-rpath,$PREFIX/lib"
+if [[ "$target_platform" == osx-* || "$target_platform" == linux-* ]]; then
+  export LDFLAGS="$LDFLAGS -Wl,-rpath,$PREFIX/lib"
+fi
 
-export BUILD="$(get_triplet $build_platform)"
-export HOST="$(get_triplet $target_platform)"
-export TARGET="$(get_triplet $ctng_target_platform)"
-
-if [[ "$target_platform" == linux-* ]]; then
+if [[ "$target_platform" == linux-* || "$target_platform" == win-* ]]; then
   # Since we might not have libgcc-ng packaged yet, let's statically link in libgcc
   export LDFLAGS="$LDFLAGS -static-libstdc++ -static-libgcc"
-fi
-
-# Workaround a problem in conda-build. xref https://github.com/conda/conda-build/pull/4253
-if [[ -d $BUILD_PREFIX/$HOST/sysroot/usr/lib64 && ! -d $BUILD_PREFIX/$HOST/sysroot/usr/lib ]]; then
-  mkdir -p $BUILD_PREFIX/$HOST/sysroot/usr
-  ln -sf $BUILD_PREFIX/$HOST/sysroot/usr/lib64 $BUILD_PREFIX/$HOST/sysroot/usr/lib
-fi
-if [[ -d $BUILD_PREFIX/$HOST/sysroot/lib64 && ! -d $BUILD_PREFIX/$HOST/sysroot/lib ]]; then
-  mkdir -p $BUILD_PREFIX/$HOST/sysroot
-  ln -sf $BUILD_PREFIX/$HOST/sysroot/lib64 $BUILD_PREFIX/$HOST/sysroot/lib
 fi
 
 ../configure \
@@ -97,9 +100,9 @@ fi
   --disable-nls \
   --disable-gprofng \
   --enable-default-pie \
-  --with-sysroot=$PREFIX/$HOST/sysroot \
-  $CONFIG_ARGS || (cat config.log; false)
+  --with-sysroot=${TARGET_SYSROOT_DIR} \
+  || (cat config.log; false)
 
 make -j${CPU_COUNT}
-
+make install-strip DESTDIR=$SRC_DIR/install
 #exit 1
