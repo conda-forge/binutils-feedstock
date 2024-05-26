@@ -86,6 +86,9 @@ if [[ "$target_platform" == linux-* || "$target_platform" == win-* ]]; then
   export LDFLAGS="$LDFLAGS -static-libstdc++ -static-libgcc"
 fi
 
+# explicitly set c99
+export CFLAGS="$CFLAGS -std=c99"
+
 ../configure \
   --prefix="$PREFIX" \
   --build=$BUILD \
