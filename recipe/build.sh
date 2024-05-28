@@ -88,6 +88,7 @@ fi
 
 # explicitly set c99
 export CFLAGS="$CFLAGS -std=c99"
+export CFLAGS_FOR_BUILD="$CFLAGS"
 
 ../configure \
   --prefix="$PREFIX" \
