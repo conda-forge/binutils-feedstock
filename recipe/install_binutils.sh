@@ -12,12 +12,10 @@ export OLD_TARGET="${triplet/conda/${ctng_vendor}}"
 if [[ "${target_platform}" == win-* ]]; then
   EXEEXT=".exe"
   PREFIX=${PREFIX}/Library
-  SYSROOT=${PREFIX}/ucrt64
-  OLD_SYSROOT=${PREFIX}/ucrt64
-else
-  SYSROOT=${PREFIX}/${TARGET}
-  OLDSYSROOT=${PREFIX}/${OLD_TARGET}
 fi
+
+SYSROOT=${PREFIX}/${TARGET}
+OLDSYSROOT=${PREFIX}/${OLD_TARGET}
 
 mkdir -p ${PREFIX}/bin
 mkdir -p ${SYSROOT}/bin

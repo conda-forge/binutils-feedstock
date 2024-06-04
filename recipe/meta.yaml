@@ -12,7 +12,7 @@ source:
       - patches/0001-fallback-sysroot.diff
 
 build:
-  number: 1
+  number: 2
   skip: True  # [win64 and cross_target_platform != "win-64"]
   detect_binary_files_with_prefix: false
 
@@ -65,10 +65,11 @@ outputs:
       run:
         - {{ pin_subpackage("ld_impl_" ~ cross_target_platform, exact=True) }}
         - sysroot_{{ cross_target_platform }}  # [cross_target_platform != "win-64"]
+        - m2w64-sysroot_{{ cross_target_platform }} >=12.0.0.r0  # [cross_target_platform == "win-64"]
     test:
       downstreams:
-        - gfortran_impl_{{ cross_target_platform }}
-        - gcc_impl_{{ cross_target_platform }}
+        - gfortran_impl_{{ cross_target_platform }}  # [cross_target_platform != "win-64"]
+        - gcc_impl_{{ cross_target_platform }}       # [cross_target_platform != "win-64"]
       commands:
         - {{ triplet }}-addr2line --help
         - {{ triplet }}-ar --help

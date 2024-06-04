@@ -19,8 +19,6 @@ cross_target_platform:
 cxx_compiler:       # [linux or win]
   - gcc_bootstrap   # [linux]
   - gcc_impl        # [win]
-channel_sources:    # [win]
-  - conda-forge/label/m2w64-experimental,conda-forge  # [win]
 zip_keys:
   -
     - triplet
