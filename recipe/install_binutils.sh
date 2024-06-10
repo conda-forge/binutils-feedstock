@@ -12,6 +12,9 @@ export OLD_TARGET="${triplet/conda/${ctng_vendor}}"
 if [[ "${target_platform}" == win-* ]]; then
   EXEEXT=".exe"
   PREFIX=${PREFIX}/Library
+  symlink="cp"
+else
+  symlink="ln -s"
 fi
 
 SYSROOT=${PREFIX}/${TARGET}
@@ -33,10 +36,10 @@ fi
 for tool in ${TOOLS}; do
   tool=${tool}${EXEEXT}
   rm -rf ${SYSROOT}/bin/${tool}
-  ln -s ${PREFIX}/bin/${TARGET}-${tool} ${SYSROOT}/bin/${tool} || true;
+  $symlink ${PREFIX}/bin/${TARGET}-${tool} ${SYSROOT}/bin/${tool} || true;
   if [[ "${TARGET}" != "$OLD_TARGET" ]]; then
-    ln -s ${PREFIX}/bin/${TARGET}-${tool} ${OLD_SYSROOT}/bin/${tool} || true;
-    ln -s ${PREFIX}/bin/${TARGET}-${tool} ${PREFIX}/bin/$OLD_TARGET-${tool} || true;
+    $symlink ${PREFIX}/bin/${TARGET}-${tool} ${OLD_SYSROOT}/bin/${tool} || true;
+    $symlink ${PREFIX}/bin/${TARGET}-${tool} ${PREFIX}/bin/$OLD_TARGET-${tool} || true;
   fi
   if [[ "$target_platform" == "$cross_target_platform" ]]; then
       mv ${PREFIX}/bin/${tool} ${PREFIX}/bin/${TARGET}-${tool}
