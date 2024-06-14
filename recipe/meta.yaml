@@ -18,10 +18,8 @@ build:
 
 requirements:
   build:
-    - {{ compiler('cxx') }}   # [not win]
-    - {{ stdlib('c') }}       # [not win]
-    - gcc_impl_{{ build_platform }}   # [win]
-    - gcc_impl_{{ target_platform }}  # [win]
+    - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
     - make                    # [osx]
   host:
   run:
@@ -36,8 +34,8 @@ outputs:
         - {{ compiler('cxx') }}   # [linux]
     requirements:
       build:
-        - {{ compiler('cxx') }}   # [not win]
-        - {{ stdlib('c') }}       # [not win]
+        - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
       host:
       run:
       run_constrained:
@@ -58,8 +56,8 @@ outputs:
         - {{ compiler('cxx') }}   # [linux]
     requirements:
       build:
-        - {{ compiler('cxx') }}   # [not win]
-        - {{ stdlib('c') }}       # [not win]
+        - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
       host:
         - ld_impl_{{ cross_target_platform }} {{ version }}
       run:
