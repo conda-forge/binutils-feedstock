@@ -17,8 +17,9 @@ cross_target_platform:
   - linux-s390x
   - win-64
 cxx_compiler:       # [linux or win]
-  - gcc_bootstrap   # [linux]
-  - gcc_impl        # [win]
+  - gcc_bootstrap   # [linux or win]
+c_stdlib:           # [win]
+  - m2w64-sysroot   # [win]
 zip_keys:
   -
     - triplet

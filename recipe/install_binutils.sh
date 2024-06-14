@@ -29,7 +29,7 @@ TOOLS="addr2line ar as c++filt elfedit gprof ld.bfd nm objcopy objdump ranlib re
 if [[ "${cross_target_platform}" == "linux-"* ]]; then
   TOOLS="${TOOLS} dwp ld.gold"
 else
-  TOOLS="${TOOLS} dlltool"
+  TOOLS="${TOOLS} dlltool dllwrap windmc windres"
 fi
 
 # Remove hardlinks and replace them by softlinks
