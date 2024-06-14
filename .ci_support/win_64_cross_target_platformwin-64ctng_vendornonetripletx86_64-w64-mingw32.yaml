@@ -1,5 +1,5 @@
 c_stdlib:
-- vs
+- m2w64-sysroot
 channel_sources:
 - conda-forge
 channel_targets:
