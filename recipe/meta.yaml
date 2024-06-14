@@ -32,6 +32,8 @@ outputs:
       detect_binary_files_with_prefix: false
       ignore_run_exports_from:    # [linux]
         - {{ compiler('cxx') }}   # [linux]
+      ignore_run_exports:         # [win]
+        - libwinpthread           # [win]
     requirements:
       build:
         - {{ compiler('cxx') }}
@@ -54,6 +56,8 @@ outputs:
         - __glibc
       ignore_run_exports_from:    # [linux]
         - {{ compiler('cxx') }}   # [linux]
+      ignore_run_exports:         # [win]
+        - libwinpthread           # [win]
     requirements:
       build:
         - {{ compiler('cxx') }}
