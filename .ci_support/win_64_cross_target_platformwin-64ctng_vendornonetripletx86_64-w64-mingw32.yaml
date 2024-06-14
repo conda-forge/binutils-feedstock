@@ -1,3 +1,5 @@
+c_stdlib:
+- vs
 channel_sources:
 - conda-forge
 channel_targets:
@@ -6,6 +8,8 @@ cross_target_platform:
 - win-64
 ctng_vendor:
 - none
+cxx_compiler:
+- gcc_bootstrap
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 target_platform:
