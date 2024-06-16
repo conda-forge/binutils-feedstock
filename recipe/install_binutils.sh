@@ -18,7 +18,7 @@ else
 fi
 
 SYSROOT=${PREFIX}/${TARGET}
-OLDSYSROOT=${PREFIX}/${OLD_TARGET}
+OLD_SYSROOT=${PREFIX}/${OLD_TARGET}
 
 mkdir -p ${PREFIX}/bin
 mkdir -p ${SYSROOT}/bin
