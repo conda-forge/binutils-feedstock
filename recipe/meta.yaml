@@ -13,7 +13,7 @@ source:
       - patches/bug30079.patch
 
 build:
-  number: 5
+  number: 6
   skip: True  # [win64 and cross_target_platform != "win-64"]
   detect_binary_files_with_prefix: false
 
