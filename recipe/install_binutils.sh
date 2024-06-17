@@ -35,14 +35,14 @@ fi
 # Remove hardlinks and replace them by softlinks
 for tool in ${TOOLS}; do
   tool=${tool}${EXEEXT}
-  rm -rf ${SYSROOT}/bin/${tool}
-  $symlink ${PREFIX}/bin/${TARGET}-${tool} ${SYSROOT}/bin/${tool} || true;
-  if [[ "${TARGET}" != "$OLD_TARGET" ]]; then
-    $symlink ${PREFIX}/bin/${TARGET}-${tool} ${OLD_SYSROOT}/bin/${tool} || true;
-    $symlink ${PREFIX}/bin/${TARGET}-${tool} ${PREFIX}/bin/$OLD_TARGET-${tool} || true;
-  fi
   if [[ "$target_platform" == "$cross_target_platform" ]]; then
       mv ${PREFIX}/bin/${tool} ${PREFIX}/bin/${TARGET}-${tool}
+  fi
+  rm -rf ${SYSROOT}/bin/${tool}
+  $symlink ${PREFIX}/bin/${TARGET}-${tool} ${SYSROOT}/bin/${tool}
+  if [[ "${TARGET}" != "${OLD_TARGET}" ]]; then
+    $symlink ${PREFIX}/bin/${TARGET}-${tool} ${OLD_SYSROOT}/bin/${tool}
+    $symlink ${PREFIX}/bin/${TARGET}-${tool} ${PREFIX}/bin/$OLD_TARGET-${tool}
   fi
 done
 
