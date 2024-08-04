@@ -1,5 +1,5 @@
 {% set name = "binutils" %}
-{% set version = "2.40" %}
+{% set version = "2.43" %}
 
 package:
   name: binutils_split
@@ -7,14 +7,14 @@ package:
 
 source:
   - url: https://ftp.gnu.org/gnu/binutils/binutils-{{ version }}.tar.bz2
-    sha256: f8298eb153a4b37d112e945aa5cb2850040bcf26a3ea65b5a715c83afe05e48a
+    sha256: fed3c3077f0df7a4a1aa47b080b8c53277593ccbb4e5e78b73ffb4e3f265e750
     patches:
       - patches/0001-fallback-sysroot.diff
       - patches/bug30079.patch
 
 build:
-  number: 7
-  skip: True  # [win64 and cross_target_platform != "win-64"]
+  number: 0
+  skip: true  # [win64 and cross_target_platform != "win-64"]
   detect_binary_files_with_prefix: false
 
 requirements:
@@ -31,9 +31,9 @@ outputs:
     build:
       merge_build_host: false
       detect_binary_files_with_prefix: false
-      ignore_run_exports_from:    # [linux]
+      ignore_run_exports_from:   # [linux]
         - {{ compiler('cxx') }}   # [linux]
-      ignore_run_exports:         # [win]
+      ignore_run_exports:   # [win]
         - libwinpthread           # [win]
     requirements:
       build:
@@ -55,9 +55,9 @@ outputs:
       detect_binary_files_with_prefix: false
       ignore_run_exports:
         - __glibc
-      ignore_run_exports_from:    # [linux]
+      ignore_run_exports_from:   # [linux]
         - {{ compiler('cxx') }}   # [linux]
-      ignore_run_exports:         # [win]
+      ignore_run_exports:   # [win]
         - libwinpthread           # [win]
     requirements:
       build:
