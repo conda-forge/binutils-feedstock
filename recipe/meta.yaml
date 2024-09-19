@@ -10,6 +10,7 @@ source:
     sha256: aa54850ebda5064c72cd4ec2d9b056c294252991486350d9a97ab2a6dfdfaf12
     patches:
       - patches/0001-fallback-sysroot.diff
+      - patches/bug30079.patch
 
 build:
   number: 0
@@ -18,10 +19,8 @@ build:
 
 requirements:
   build:
-    - {{ compiler('cxx') }}   # [not win]
-    - {{ stdlib('c') }}       # [not win]
-    - gcc_impl_{{ build_platform }}   # [win]
-    - gcc_impl_{{ target_platform }}  # [win]
+    - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
     - make                    # [osx]
   host:
   run:
@@ -34,10 +33,12 @@ outputs:
       detect_binary_files_with_prefix: false
       ignore_run_exports_from:    # [linux]
         - {{ compiler('cxx') }}   # [linux]
+      ignore_run_exports:         # [win]
+        - libwinpthread           # [win]
     requirements:
       build:
-        - {{ compiler('cxx') }}   # [not win]
-        - {{ stdlib('c') }}       # [not win]
+        - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
       host:
       run:
       run_constrained:
@@ -56,19 +57,22 @@ outputs:
         - __glibc
       ignore_run_exports_from:    # [linux]
         - {{ compiler('cxx') }}   # [linux]
+      ignore_run_exports:         # [win]
+        - libwinpthread           # [win]
     requirements:
       build:
-        - {{ compiler('cxx') }}   # [not win]
-        - {{ stdlib('c') }}       # [not win]
+        - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
       host:
         - ld_impl_{{ cross_target_platform }} {{ version }}
       run:
         - {{ pin_subpackage("ld_impl_" ~ cross_target_platform, exact=True) }}
         - sysroot_{{ cross_target_platform }}  # [cross_target_platform != "win-64"]
+        - m2w64-sysroot_{{ cross_target_platform }} >=12.0.0.r0  # [cross_target_platform == "win-64"]
     test:
       downstreams:
-        - gfortran_impl_{{ cross_target_platform }}
-        - gcc_impl_{{ cross_target_platform }}
+        - gfortran_impl_{{ cross_target_platform }}  # [cross_target_platform != "win-64"]
+        - gcc_impl_{{ cross_target_platform }}       # [cross_target_platform != "win-64"]
       commands:
         - {{ triplet }}-addr2line --help
         - {{ triplet }}-ar --help

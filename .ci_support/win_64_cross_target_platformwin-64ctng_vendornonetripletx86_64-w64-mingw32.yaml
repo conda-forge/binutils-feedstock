@@ -1,11 +1,15 @@
+c_stdlib:
+- m2w64-sysroot
 channel_sources:
-- conda-forge/label/m2w64-experimental,conda-forge
+- conda-forge
 channel_targets:
 - conda-forge main
 cross_target_platform:
 - win-64
 ctng_vendor:
 - none
+cxx_compiler:
+- gcc_bootstrap
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 target_platform:

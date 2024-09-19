@@ -58,12 +58,10 @@ cd build
 
 if [[ "$target_platform" == win-* ]]; then
   PREFIX=$PREFIX/Library
-  TARGET_SYSROOT_DIR=$PREFIX/Library/ucrt64
   export CC=$BUILD_PREFIX/bin/$HOST-cc
   export CC_FOR_BUILD=$BUILD_PREFIX/bin/$BUILD-cc
-else
-  TARGET_SYSROOT_DIR=$PREFIX/$TARGET/sysroot
 fi
+TARGET_SYSROOT_DIR=$PREFIX/$TARGET/sysroot
 
 if [[ "$target_platform" == osx-arm64 ]]; then
   OSX_ARCH="arm64"
