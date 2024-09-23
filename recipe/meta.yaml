@@ -91,6 +91,15 @@ outputs:
         - {{ triplet }}-strings --help
         - {{ triplet }}-strip --help
 
+  - name: binutils_{{ cross_target_platform }}
+    script: install_activation.sh
+    requirements:
+      run:
+        - {{ pin_subpackage("binutils_impl_" ~ cross_target_platform, exact=True) }}
+    test:
+      commands:
+        - test -f $LD
+
   - name: binutils
     script: install_binutils_symlinks.sh
     build:
