@@ -10,7 +10,6 @@ source:
     sha256: aa54850ebda5064c72cd4ec2d9b056c294252991486350d9a97ab2a6dfdfaf12
     patches:
       - patches/0001-fallback-sysroot.diff
-      - patches/bug30079.patch
 
 build:
   number: 0
