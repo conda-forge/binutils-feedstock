@@ -17,7 +17,7 @@ if [[ "${cross_target_platform}" == "linux-"* ]]; then
   TOOLS="${TOOLS} dwp ld.gold"
   $symlink "${PREFIX}/bin/ld.gold${EXEEXT}" "${PREFIX}/bin/gold${EXEEXT}"
 else
-  TOOLS="${TOOLS} dlltool dllwrap windmc windres""
+  TOOLS="${TOOLS} dlltool dllwrap windmc windres"
 fi
 
 for tool in ${TOOLS}; do
