@@ -25,3 +25,7 @@ for tool in ${TOOLS}; do
   touch ${PREFIX}/bin/${TARGET}-${tool}${EXEEXT}
   $symlink ${PREFIX}/bin/${TARGET}-${tool}${EXEEXT} ${PREFIX}/bin/${tool}${EXEEXT}
 done
+
+# Install documentation with non-cross package, so there can only be one copy
+mkdir -p ${PREFIX}/share
+cp -vr ${SRC_DIR}/install${PREFIX}/share/* ${PREFIX}/share/
