@@ -29,7 +29,8 @@ outputs:
     script: install_ld.sh
     build:
       merge_build_host: false
-      detect_binary_files_with_prefix: false
+      # ld binaries have host prefix search paths embeded in them
+      detect_binary_files_with_prefix: true
       ignore_run_exports_from:   # [linux]
         - {{ compiler('cxx') }}   # [linux]
       ignore_run_exports:   # [win]
@@ -80,6 +81,8 @@ outputs:
         - {{ triplet }}-elfedit --help
         - {{ triplet }}-gprof --help
         - {{ triplet }}-ld --help
+        # Look here to check that search path prefixes have been replaced
+        - {{ triplet }}-ld --verbose | grep SEARCH
         - {{ triplet }}-ld.bfd --help
         - {{ triplet }}-ld.gold --help  # [cross_target_platform != "win-64"]
         - {{ triplet }}-nm --help
