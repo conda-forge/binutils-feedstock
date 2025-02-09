@@ -21,6 +21,7 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
     - make                    # [osx]
+    - texinfo                 # [osx]
   host:
   run:
 
