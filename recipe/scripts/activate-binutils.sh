@@ -1,5 +1,8 @@
 # shellcheck shell=sh
 
+# This script expands variables that potentially do not exist. In case -u is enabled, this will fail.
+set +u
+
 # This function takes no arguments
 # It tries to determine the name of this file in a programatic way.
 _get_sourced_filename() {
