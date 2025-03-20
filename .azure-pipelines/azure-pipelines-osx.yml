@@ -20,6 +20,12 @@ jobs:
       osx_64_cross_target_platformlinux-s390xctng_vendorconda_cos7triplets390x-conda-linux-gnu:
         CONFIG: osx_64_cross_target_platformlinux-s390xctng_vendorconda_cos7triplets390x-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+      osx_64_cross_target_platformosx-64ctng_vendornonetripletx86_64-apple-darwin13.4.0:
+        CONFIG: osx_64_cross_target_platformosx-64ctng_vendornonetripletx86_64-apple-darwin13.4.0
+        UPLOAD_PACKAGES: 'True'
+      osx_64_cross_target_platformosx-arm64ctng_vendornonetripletarm64-apple-darwin20.0.0:
+        CONFIG: osx_64_cross_target_platformosx-arm64ctng_vendornonetripletarm64-apple-darwin20.0.0
+        UPLOAD_PACKAGES: 'True'
       osx_64_cross_target_platformwin-64ctng_vendornonetripletx86_64-w64-mingw32:
         CONFIG: osx_64_cross_target_platformwin-64ctng_vendornonetripletx86_64-w64-mingw32
         UPLOAD_PACKAGES: 'True'
