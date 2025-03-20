@@ -25,3 +25,5 @@ zip_keys:
     - triplet
     - ctng_vendor
     - cross_target_platform
+cxx_compiler_version:  # [osx]
+- '17'                 # [osx]
