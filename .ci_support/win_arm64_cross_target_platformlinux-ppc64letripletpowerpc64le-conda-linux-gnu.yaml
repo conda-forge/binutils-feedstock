@@ -1,0 +1,20 @@
+c_stdlib:
+- m2w64-sysroot
+channel_sources:
+- conda-forge
+channel_targets:
+- conda-forge main
+cross_target_platform:
+- linux-ppc64le
+ctng_vendor:
+- conda_cos7
+cxx_compiler:
+- gcc_bootstrap
+target_platform:
+- win-arm64
+triplet:
+- powerpc64le-conda-linux-gnu
+zip_keys:
+- - triplet
+  - ctng_vendor
+  - cross_target_platform
