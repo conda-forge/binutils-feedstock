@@ -6,9 +6,6 @@ TARGET="${triplet}"
 if [[ "${target_platform}" == win-* ]]; then
   EXEEXT=".exe"
   PREFIX=${PREFIX}/Library
-  symlink="cp"
-else
-  symlink="ln -s"
 fi
 
 TOOLS="addr2line ar as c++filt elfedit gprof ld ld.bfd nm objcopy objdump ranlib readelf size strings strip"
@@ -21,7 +18,11 @@ else
 fi
 
 for tool in ${TOOLS}; do
-  rm ${PREFIX}/bin/${TARGET}-${tool}${EXEEXT}
-  touch ${PREFIX}/bin/${TARGET}-${tool}${EXEEXT}
-  $symlink ${PREFIX}/bin/${TARGET}-${tool}${EXEEXT} ${PREFIX}/bin/${tool}${EXEEXT}
+  if [[ "$target_platform" == "win-"* ]]; then
+    cp ${PREFIX}/bin/${TARGET}-${tool}${EXEEXT} ${PREFIX}/bin/${tool}${EXEEXT}
+  else
+    rm ${PREFIX}/bin/${TARGET}-${tool}${EXEEXT}
+    touch ${PREFIX}/bin/${TARGET}-${tool}${EXEEXT}
+    ln -s ${PREFIX}/bin/${TARGET}-${tool}${EXEEXT} ${PREFIX}/bin/${tool}${EXEEXT}
+  fi
 done
