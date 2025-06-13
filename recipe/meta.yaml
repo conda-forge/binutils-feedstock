@@ -22,6 +22,7 @@ requirements:
     - {{ stdlib('c') }}
     - make                    # [osx]
     - texinfo                 # [osx]
+    - flex                    # [osx]
   host:
   run:
 
