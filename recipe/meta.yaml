@@ -29,6 +29,7 @@ outputs:
   - name: ld_impl_{{ cross_target_platform }}
     script: install_ld.sh
     build:
+      skip: true  # [cross_target_platform in ("osx-arm64", "osx-64")]
       merge_build_host: false
       # ld binaries have host prefix search paths embeded in them
       detect_binary_files_with_prefix: true
@@ -65,10 +66,10 @@ outputs:
         - {{ compiler('cxx') }}
         - {{ stdlib('c') }}
       host:
-        - ld_impl_{{ cross_target_platform }} {{ version }}
+        - ld_impl_{{ cross_target_platform }} {{ version }} # [cross_target_platform not in ("osx-arm64", "osx-64")]
       run:
-        - {{ pin_subpackage("ld_impl_" ~ cross_target_platform, exact=True) }}
-        - sysroot_{{ cross_target_platform }}  # [cross_target_platform != "win-64"]
+        - {{ pin_subpackage("ld_impl_" ~ cross_target_platform, exact=True) }}  # [cross_target_platform not in ("osx-arm64", "osx-64")]
+        - sysroot_{{ cross_target_platform }}  # [cross_target_platform not in ("win-64", "osx-arm64", "osx-64")]
         - m2w64-sysroot_{{ cross_target_platform }} >=12.0.0.r0  # [cross_target_platform == "win-64"]
     test:
       downstreams:
@@ -80,12 +81,12 @@ outputs:
         - {{ triplet }}-as --help
         - {{ triplet }}-c++filt --help
         - {{ triplet }}-elfedit --help
-        - {{ triplet }}-gprof --help
-        - {{ triplet }}-ld --help
+        - {{ triplet }}-gprof --help                # [cross_target_platform not in ("osx-arm64", "osx-64")]
+        - {{ triplet }}-ld --help                   # [cross_target_platform not in ("osx-arm64", "osx-64")]
         # Look here to check that search path prefixes have been replaced
-        - {{ triplet }}-ld --verbose | grep SEARCH
-        - {{ triplet }}-ld.bfd --help
-        - {{ triplet }}-ld.gold --help  # [cross_target_platform != "win-64"]
+        - {{ triplet }}-ld --verbose | grep SEARCH  # [cross_target_platform not in ("osx-arm64", "osx-64")]
+        - {{ triplet }}-ld.bfd --help               # [cross_target_platform not in ("osx-arm64", "osx-64")]
+        - {{ triplet }}-ld.gold --help  # [cross_target_platform not in ("win-64", "osx-arm64", "osx-64")]
         - {{ triplet }}-nm --help
         - {{ triplet }}-objcopy --help
         - {{ triplet }}-objdump --help
@@ -102,7 +103,7 @@ outputs:
         - {{ pin_subpackage("binutils_impl_" ~ cross_target_platform, exact=True) }}
     test:
       commands:
-        - $LD --help
+        - $LD --help  # [cross_target_platform not in ("win-64", "osx-arm64", "osx-64")]
         - $AR --help
 
   - name: binutils
@@ -121,14 +122,14 @@ outputs:
       commands:
         - $PREFIX/bin/addr2line --help
         - $PREFIX/bin/ar --help
-        - $PREFIX/bin/as --help
+        - $PREFIX/bin/as --help       # [cross_target_platform not in ("osx-arm64", "osx-64")]
         - $PREFIX/bin/c++filt --help
         - $PREFIX/bin/elfedit --help
-        - $PREFIX/bin/gold --help  # [cross_target_platform != "win-64"]
-        - $PREFIX/bin/gprof --help
-        - $PREFIX/bin/ld --help
-        - $PREFIX/bin/ld.bfd --help
-        - $PREFIX/bin/ld.gold --help  # [cross_target_platform != "win-64"]
+        - $PREFIX/bin/gold --help     # [cross_target_platform not in ("win-64", "osx-arm64", "osx-64")]
+        - $PREFIX/bin/gprof --help    # [cross_target_platform not in ("osx-arm64", "osx-64")]
+        - $PREFIX/bin/ld --help       # [cross_target_platform not in ("osx-arm64", "osx-64")]
+        - $PREFIX/bin/ld.bfd --help   # [cross_target_platform not in ("osx-arm64", "osx-64")]
+        - $PREFIX/bin/ld.gold --help  # [cross_target_platform not in ("win-64", "osx-arm64", "osx-64")]
         - $PREFIX/bin/nm --help
         - $PREFIX/bin/objcopy --help
         - $PREFIX/bin/objdump --help

@@ -1,13 +1,20 @@
+#!/bin/bash
+
+set -ex
+
 if [[ "$target_platform" == "win-"* ]]; then
   IS_WIN=1
 else
   IS_WIN=0
 fi
 
-TOOLS="addr2line ar as c++filt elfedit gprof ld nm objcopy objdump ranlib readelf size strings strip"
+TOOLS="addr2line ar c++filt elfedit nm objcopy objdump ranlib readelf size strings strip"
+if [[ "${cross_target_platform}" != "osx-"* ]]; then
+  TOOLS="${TOOLS} as gprof ld"
+fi
 if [[ "${cross_target_platform}" == "linux-"* ]]; then
   TOOLS="${TOOLS} dwp ld.gold"
-else
+elif [[ "${cross_target_plaform}" == "win-"* ]]; then
   TOOLS="${TOOLS} dlltool dllwrap windmc windres"
 fi
 
