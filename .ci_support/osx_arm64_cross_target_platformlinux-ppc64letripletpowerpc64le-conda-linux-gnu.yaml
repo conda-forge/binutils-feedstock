@@ -13,7 +13,7 @@ channel_targets:
 cross_target_platform:
 - linux-ppc64le
 ctng_vendor:
-- conda_cos7
+- conda
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
