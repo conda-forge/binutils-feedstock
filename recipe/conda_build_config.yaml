@@ -7,10 +7,10 @@ triplet:
   - x86_64-apple-darwin13.4.0
   - arm64-apple-darwin20.0.0
 ctng_vendor:
-  - conda_cos6
-  - conda_cos7
-  - conda_cos7
-  - conda_cos7
+  - conda
+  - conda
+  - conda
+  - conda
   - none
   - none
   - none
