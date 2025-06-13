@@ -8,12 +8,14 @@ if [[ "${target_platform}" == win-* ]]; then
   PREFIX=${PREFIX}/Library
 fi
 
-TOOLS="addr2line ar as c++filt elfedit gprof ld ld.bfd nm objcopy objdump ranlib readelf size strings strip"
-
+TOOLS="addr2line ar c++filt elfedit nm objcopy objdump ranlib readelf size strings strip"
+if [[ "${cross_target_platform}" != "osx-"* ]]; then
+  TOOLS="${TOOLS} as gprof ld ld.bfd"
+fi
 if [[ "${cross_target_platform}" == "linux-"* ]]; then
   TOOLS="${TOOLS} dwp ld.gold"
   ln -s "${PREFIX}/bin/ld.gold${EXEEXT}" "${PREFIX}/bin/gold${EXEEXT}"
-else
+elif [[ "${cross_target_plaform}" == "win-"* ]]; then
   TOOLS="${TOOLS} dlltool dllwrap windmc windres"
 fi
 

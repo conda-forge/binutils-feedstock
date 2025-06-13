@@ -9,9 +9,9 @@ channel_sources:
 channel_targets:
 - conda-forge main
 cross_target_platform:
-- linux-ppc64le
+- osx-arm64
 ctng_vendor:
-- conda
+- none
 cxx_compiler:
 - gcc_bootstrap
 cxx_compiler_version:
@@ -21,7 +21,7 @@ docker_image:
 target_platform:
 - linux-aarch64
 triplet:
-- powerpc64le-conda-linux-gnu
+- arm64-apple-darwin20.0.0
 zip_keys:
 - - triplet
   - ctng_vendor
