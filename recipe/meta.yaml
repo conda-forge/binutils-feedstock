@@ -78,7 +78,7 @@ outputs:
       commands:
         - {{ triplet }}-addr2line --help
         - {{ triplet }}-ar --help
-        - {{ triplet }}-as --help
+        - {{ triplet }}-as --help                   # [cross_target_platform not in ("osx-arm64", "osx-64")]
         - {{ triplet }}-c++filt --help
         - {{ triplet }}-elfedit --help
         - {{ triplet }}-gprof --help                # [cross_target_platform not in ("osx-arm64", "osx-64")]
