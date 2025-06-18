@@ -96,7 +96,6 @@ fi
   --host=$HOST \
   --target=$TARGET \
   --enable-ld=default \
-  --enable-gold=yes \
   --enable-plugins \
   --disable-multilib \
   --disable-sim \
@@ -107,6 +106,6 @@ fi
   --with-sysroot=${TARGET_SYSROOT_DIR} \
   || (cat config.log; false)
 
+
 make -j${CPU_COUNT}
 make install-strip DESTDIR=$SRC_DIR/install
-#exit 1

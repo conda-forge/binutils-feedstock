@@ -87,7 +87,6 @@ outputs:
         # Look here to check that search path prefixes have been replaced
         - {{ triplet }}-ld --verbose | grep SEARCH  # [cross_target_platform not in ("osx-arm64", "osx-64")]
         - {{ triplet }}-ld.bfd --help               # [cross_target_platform not in ("osx-arm64", "osx-64")]
-        - {{ triplet }}-ld.gold --help  # [cross_target_platform not in ("win-64", "osx-arm64", "osx-64")]
         - {{ triplet }}-nm --help
         - {{ triplet }}-objcopy --help
         - {{ triplet }}-objdump --help
@@ -126,11 +125,9 @@ outputs:
         - $PREFIX/bin/as --help       # [cross_target_platform not in ("osx-arm64", "osx-64")]
         - $PREFIX/bin/c++filt --help
         - $PREFIX/bin/elfedit --help
-        - $PREFIX/bin/gold --help     # [cross_target_platform not in ("win-64", "osx-arm64", "osx-64")]
         - $PREFIX/bin/gprof --help    # [cross_target_platform not in ("osx-arm64", "osx-64")]
         - $PREFIX/bin/ld --help       # [cross_target_platform not in ("osx-arm64", "osx-64")]
         - $PREFIX/bin/ld.bfd --help   # [cross_target_platform not in ("osx-arm64", "osx-64")]
-        - $PREFIX/bin/ld.gold --help  # [cross_target_platform not in ("win-64", "osx-arm64", "osx-64")]
         - $PREFIX/bin/nm --help
         - $PREFIX/bin/objcopy --help
         - $PREFIX/bin/objdump --help
