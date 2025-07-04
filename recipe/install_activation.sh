@@ -12,9 +12,7 @@ TOOLS="addr2line ar c++filt elfedit nm objcopy objdump ranlib readelf size strin
 if [[ "${cross_target_platform}" != "osx-"* ]]; then
   TOOLS="${TOOLS} as gprof ld"
 fi
-if [[ "${cross_target_platform}" == "linux-"* ]]; then
-  TOOLS="${TOOLS} dwp ld.gold"
-elif [[ "${cross_target_plaform}" == "win-"* ]]; then
+if [[ "${cross_target_plaform}" == "win-"* ]]; then
   TOOLS="${TOOLS} dlltool dllwrap windmc windres"
 fi
 
