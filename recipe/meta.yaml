@@ -6,7 +6,9 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://ftp.gnu.org/gnu/binutils/binutils-{{ version }}.tar.bz2
+  - url:
+      - https://ftp.gnu.org/gnu/binutils/binutils-{{ version }}.tar.bz2
+      - https://mirrors.ocf.berkeley.edu/gnu/binutils/binutils-{{ version }}.tar.bz2
     sha256: f66390a661faa117d00fab2e79cf2dc9d097b42cc296bf3f8677d1e7b452dc3a
     patches:
       - patches/0001-fallback-sysroot.diff
