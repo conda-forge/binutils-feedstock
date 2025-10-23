@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 
 #pushd ${BUILD_PREFIX}/bin
@@ -97,6 +97,7 @@ fi
   --disable-nls \
   --disable-gprofng \
   --enable-default-pie \
+  --with-zstd=yes \
   --with-sysroot=${TARGET_SYSROOT_DIR} \
   || (cat config.log; false)
 
