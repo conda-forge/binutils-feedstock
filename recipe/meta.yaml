@@ -14,7 +14,7 @@ source:
       - patches/0001-fallback-sysroot.diff
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win64 and cross_target_platform != "win-64"]
   detect_binary_files_with_prefix: false
 
@@ -25,7 +25,9 @@ requirements:
     - make                    # [osx]
     - texinfo                 # [osx]
     - flex                    # [osx]
+    - pkg-config
   host:
+    - zstd
   run:
 
 outputs:
@@ -44,8 +46,11 @@ outputs:
       build:
         - {{ compiler('cxx') }}
         - {{ stdlib('c') }}
+        - pkg-config
       host:
+        - zstd
       run:
+        - zstd
       run_constrained:
         - binutils_impl_{{ cross_target_platform }} {{ version }}
     test:
@@ -68,12 +73,15 @@ outputs:
       build:
         - {{ compiler('cxx') }}
         - {{ stdlib('c') }}
+        - pkg-config
       host:
         - ld_impl_{{ cross_target_platform }} {{ version }}  # [cross_target_platform not in ("osx-arm64", "osx-64")]
+        - zstd
       run:
         - {{ pin_subpackage("ld_impl_" ~ cross_target_platform, exact=True) }}  # [cross_target_platform not in ("osx-arm64", "osx-64")]
         - sysroot_{{ cross_target_platform }}  # [cross_target_platform not in ("win-64", "osx-arm64", "osx-64")]
         - m2w64-sysroot_{{ cross_target_platform }} >=12.0.0.r0  # [cross_target_platform == "win-64"]
+        - zstd
     test:
       downstreams:
         - gfortran_impl_{{ cross_target_platform }}  # [cross_target_platform != "win-64"]
