@@ -91,6 +91,7 @@ fi
   --target=$TARGET \
   --enable-ld=default \
   --enable-plugins \
+  --enable-lto \
   --disable-multilib \
   --disable-sim \
   --disable-gdb \
