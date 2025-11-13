@@ -28,3 +28,5 @@ zip_keys:
 - - triplet
   - ctng_vendor
   - cross_target_platform
+zstd:
+- '1.5'

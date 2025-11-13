@@ -4,8 +4,12 @@ set -ex
 
 if [[ "$target_platform" == "win-"* ]]; then
   IS_WIN=1
+  LIBRARY_PREFIX="/Library"
+  EXE_EXT=".exe"
 else
   IS_WIN=0
+  LIBRARY_PREFIX=""
+  EXE_EXT=""
 fi
 
 TOOLS="addr2line ar c++filt elfedit nm objcopy objdump ranlib readelf size strings strip"
@@ -14,12 +18,6 @@ if [[ "${cross_target_platform}" != "osx-"* ]]; then
 fi
 if [[ "${cross_target_plaform}" == "win-"* ]]; then
   TOOLS="${TOOLS} dlltool dllwrap windmc windres"
-fi
-
-if [[ "${target_platform}" == "win-"* ]]; then
-  LIBRARY_PREFIX="/Library"
-else
-  LIBRARY_PREFIX=""
 fi
 
 CHOST="${triplet}"
@@ -44,6 +42,7 @@ find . -name "*activate*.*" -exec sed -i.bak "s|@IS_WIN@|${IS_WIN}|g"           
 find . -name "*activate*.*" -exec sed -i.bak "s|@TOOLS@|${TOOLS}|g"                     "{}" \;
 find . -name "*activate*.*" -exec sed -i.bak "s|@CHOST@|${CHOST}|g"                     "{}" \;
 find . -name "*activate*.*" -exec sed -i.bak "s|@LIBRARY_PREFIX@|${LIBRARY_PREFIX}|g"   "{}" \;
+find . -name "*activate*.*" -exec sed -i.bak "s|@EXE_EXT@|${EXE_EXT}|g"                 "{}" \;
 
 mkdir -p ${PREFIX}/etc/conda/{de,}activate.d
 cp "${SRC_DIR}"/activate-binutils.sh ${PREFIX}/etc/conda/activate.d/activate-${PKG_NAME}.sh

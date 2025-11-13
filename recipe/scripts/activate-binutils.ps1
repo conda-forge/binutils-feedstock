@@ -1,56 +1,56 @@
 $Env:CONDA_BACKUP_ADDR2LINE=$Env:ADDR2LINE
-$Env:ADDR2LINE=@CHOST@-addr2line.exe
+$Env:ADDR2LINE="@CHOST@-addr2line.exe"
 
 $Env:CONDA_BACKUP_AR=$Env:AR
-$Env:AR=@CHOST@-ar.exe
+$Env:AR="@CHOST@-ar.exe"
 
 $Env:CONDA_BACKUP_AS=$Env:AS
-$Env:AS=@CHOST@-as.exe
+$Env:AS="@CHOST@-as.exe"
 
 $Env:CONDA_BACKUP_CXXFILT=$Env:CXXFILT
-$Env:CXXFILT=@CHOST@-c++filt.exe
+$Env:CXXFILT="@CHOST@-c++filt.exe"
 
 $Env:CONDA_BACKUP_ELFEDIT=$Env:ELFEDIT
-$Env:ELFEDIT=@CHOST@-elfedit.exe
+$Env:ELFEDIT="@CHOST@-elfedit.exe"
 
 $Env:CONDA_BACKUP_GPROF=$Env:GPROF
-$Env:GPROF=@CHOST@-gprof.exe
+$Env:GPROF="@CHOST@-gprof.exe"
 
 $Env:CONDA_BACKUP_LD=$Env:LD
-$Env:LD=@CHOST@-ld.exe
+$Env:LD="@CHOST@-ld.exe"
 
 $Env:CONDA_BACKUP_NM=$Env:NM
-$Env:NM=@CHOST@-nm.exe
+$Env:NM="@CHOST@-nm.exe"
 
 $Env:CONDA_BACKUP_OBJCOPY=$Env:OBJCOPY
-$Env:OBJCOPY=@CHOST@-objcopy.exe
+$Env:OBJCOPY="@CHOST@-objcopy.exe"
 
 $Env:CONDA_BACKUP_OBJDUMP=$Env:OBJDUMP
-$Env:OBJDUMP=@CHOST@-objdump.exe
+$Env:OBJDUMP="@CHOST@-objdump.exe"
 
 $Env:CONDA_BACKUP_RANLIB=$Env:RANLIB
-$Env:RANLIB=@CHOST@-ranlib.exe
+$Env:RANLIB="@CHOST@-ranlib.exe"
 
 $Env:CONDA_BACKUP_READELF=$Env:READELF
-$Env:READELF=@CHOST@-readelf.exe
+$Env:READELF="@CHOST@-readelf.exe"
 
 $Env:CONDA_BACKUP_SIZE=$Env:SIZE
-$Env:SIZE=@CHOST@-size.exe
+$Env:SIZE="@CHOST@-size.exe"
 
 $Env:CONDA_BACKUP_STRINGS=$Env:STRINGS
-$Env:STRINGS=@CHOST@-strings.exe
+$Env:STRINGS="@CHOST@-strings.exe"
 
 $Env:CONDA_BACKUP_STRIP=$Env:STRIP
-$Env:STRIP=@CHOST@-strip.exe
+$Env:STRIP="@CHOST@-strip.exe"
 
 $Env:CONDA_BACKUP_DLLTOOL=$Env:DLLTOOL
-$Env:DLLTOOL=@CHOST@-dlltool.exe
+$Env:DLLTOOL="@CHOST@-dlltool.exe"
 
 $Env:CONDA_BACKUP_DLLWRAP=$Env:DLLWRAP
-$Env:DLLWRAP=@CHOST@-dllwrap.exe
+$Env:DLLWRAP="@CHOST@-dllwrap.exe"
 
 $Env:CONDA_BACKUP_WINDMC=$Env:WINDMC
-$Env:WINDMC=@CHOST@-windmc.exe
+$Env:WINDMC="@CHOST@-windmc.exe"
 
 $Env:CONDA_BACKUP_WINDRES=$Env:WINDRES
-$Env:WINDRES=@CHOST@-windres.exe
+$Env:WINDRES="@CHOST@-windres.exe"

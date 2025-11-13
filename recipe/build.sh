@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 
 #pushd ${BUILD_PREFIX}/bin
@@ -84,12 +84,6 @@ if [[ "$target_platform" == linux-* || "$target_platform" == win-* ]]; then
   export LDFLAGS="$LDFLAGS -static-libstdc++ -static-libgcc"
 fi
 
-if [[ "$target_platform" != win-* ]]; then
-  # explicitly set c99
-  export CFLAGS="$CFLAGS -std=c99"
-  export CFLAGS_FOR_BUILD="$(echo $CFLAGS_FOR_BUILD | sed "s#$PREFIX#$BUILD_PREFIX#g") -std=c99"
-fi
-
 ../configure \
   --prefix="$PREFIX" \
   --build=$BUILD \
@@ -97,12 +91,14 @@ fi
   --target=$TARGET \
   --enable-ld=default \
   --enable-plugins \
+  --enable-lto \
   --disable-multilib \
   --disable-sim \
   --disable-gdb \
   --disable-nls \
   --disable-gprofng \
   --enable-default-pie \
+  --with-zstd=yes \
   --with-sysroot=${TARGET_SYSROOT_DIR} \
   || (cat config.log; false)
 
