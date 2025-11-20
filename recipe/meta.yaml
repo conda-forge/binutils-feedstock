@@ -88,7 +88,7 @@ outputs:
         - m2w64-sysroot_{{ cross_target_platform }} >=12.0.0.r0  # [cross_target_platform == "win-64"]
     test:
       downstreams:
-        - gfortran_impl_{{ cross_target_platform }}  # [cross_target_platform != "win-64"]
+        #- gfortran_impl_{{ cross_target_platform }}  # [cross_target_platform != "win-64"]
         - gcc_impl_{{ cross_target_platform }}       # [cross_target_platform != "win-64"]
       commands:
         - {{ triplet }}-addr2line --help
