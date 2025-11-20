@@ -84,6 +84,10 @@ if [[ "$target_platform" == linux-* || "$target_platform" == win-* ]]; then
   export LDFLAGS="$LDFLAGS -static-libstdc++ -static-libgcc"
 fi
 
+if [[ "$with_zstd" == "true" ]]; then
+  EXTRA_CONFIGURE_ARGS="--with-zstd"
+fi
+
 ../configure \
   --prefix="$PREFIX" \
   --build=$BUILD \
@@ -98,8 +102,8 @@ fi
   --disable-nls \
   --disable-gprofng \
   --enable-default-pie \
-  --with-zstd=yes \
   --with-sysroot=${TARGET_SYSROOT_DIR} \
+  ${EXTRA_CONFIGURE_ARGS}
   || (cat config.log; false)
 
 
