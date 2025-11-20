@@ -84,7 +84,7 @@ if [[ "$target_platform" == linux-* || "$target_platform" == win-* ]]; then
   export LDFLAGS="$LDFLAGS -static-libstdc++ -static-libgcc"
 fi
 
-if [[ "$with_zstd" == "true" ]]; then
+if [[ "$bootstrap" == "false" ]]; then
   EXTRA_CONFIGURE_ARGS="--with-zstd"
 fi
 

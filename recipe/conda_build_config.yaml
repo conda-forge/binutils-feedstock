@@ -26,7 +26,7 @@ cxx_compiler:       # [linux or win]
   - gcc_bootstrap   # [linux or win]
 c_stdlib:           # [win]
   - m2w64-sysroot   # [win]
-with_zstd:
+bootstrap:
   - true
   - false
 zip_keys:

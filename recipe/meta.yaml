@@ -1,7 +1,7 @@
 {% set name = "binutils" %}
 {% set version = "2.45" %}
 {% set build_num = 1 %}
-{% if with_zstd %}
+{% if not bootstrap %}
 {% set build_num = build_num + 100 %}
 {% endif %}
 
@@ -21,8 +21,8 @@ build:
   number: {{ build_num }}
   skip: true  # [win64 and cross_target_platform != "win-64"]
   detect_binary_files_with_prefix: false
-  string: default_{{ PKG_HASH }}_{{ build_num }}    # [with_zstd]
-  string: boostrap_h{{ PKG_HASH }}_{{ build_num }}  # [not with_zstd]
+  string: default_{{ PKG_HASH }}_{{ build_num }}    # [not bootstrap]
+  string: boostrap_h{{ PKG_HASH }}_{{ build_num }}  # [bootstrap]
 
 requirements:
   build:
@@ -33,7 +33,7 @@ requirements:
     - flex                    # [osx]
     - pkg-config
   host:
-    - zstd  # [with_zstd]
+    - zstd  # [not bootstrap]
   run:
 
 outputs:
@@ -54,7 +54,7 @@ outputs:
         - {{ stdlib('c') }}
         - pkg-config
       host:
-        - zstd  # [with_zstd]
+        - zstd  # [not bootstrap]
       run:
       run_constrained:
         - binutils_impl_{{ cross_target_platform }} {{ version }}
@@ -81,7 +81,7 @@ outputs:
         - pkg-config
       host:
         - ld_impl_{{ cross_target_platform }} {{ version }}  # [cross_target_platform not in ("osx-arm64", "osx-64")]
-        - zstd  # [with_zstd]
+        - zstd  # [not bootstrap]
       run:
         - {{ pin_subpackage("ld_impl_" ~ cross_target_platform, exact=True) }}  # [cross_target_platform not in ("osx-arm64", "osx-64")]
         - sysroot_{{ cross_target_platform }}  # [cross_target_platform not in ("win-64", "osx-arm64", "osx-64")]
