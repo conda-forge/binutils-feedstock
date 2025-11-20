@@ -103,7 +103,7 @@ fi
   --disable-gprofng \
   --enable-default-pie \
   --with-sysroot=${TARGET_SYSROOT_DIR} \
-  ${EXTRA_CONFIGURE_ARGS}
+  ${EXTRA_CONFIGURE_ARGS} \
   || (cat config.log; false)
 
 
