@@ -28,8 +28,8 @@ requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
-    - make                    # [osx]
-    - texinfo                 # [osx]
+    - make
+    - texinfo
     - flex                    # [osx]
     - pkg-config
   host:
