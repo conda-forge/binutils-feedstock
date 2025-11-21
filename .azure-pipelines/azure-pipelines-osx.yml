@@ -20,12 +20,6 @@ jobs:
       osx_64_bootstrapfalsecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu:
         CONFIG: osx_64_bootstrapfalsecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
-      osx_64_bootstrapfalsecross_target_platformosx-64tripletx86_64-apple-darwin13.4.0:
-        CONFIG: osx_64_bootstrapfalsecross_target_platformosx-64tripletx86_64-apple-darwin13.4.0
-        UPLOAD_PACKAGES: 'True'
-      osx_64_bootstrapfalsecross_target_platformosx-arm64tripletarm64-apple-darwin20.0.0:
-        CONFIG: osx_64_bootstrapfalsecross_target_platformosx-arm64tripletarm64-apple-darwin20.0.0
-        UPLOAD_PACKAGES: 'True'
       osx_64_bootstrapfalsecross_target_platformwin-64tripletx86_64-w64-mingw32:
         CONFIG: osx_64_bootstrapfalsecross_target_platformwin-64tripletx86_64-w64-mingw32
         UPLOAD_PACKAGES: 'True'
@@ -40,12 +34,6 @@ jobs:
         UPLOAD_PACKAGES: 'True'
       osx_64_bootstraptruecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu:
         CONFIG: osx_64_bootstraptruecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu
-        UPLOAD_PACKAGES: 'True'
-      osx_64_bootstraptruecross_target_platformosx-64tripletx86_64-apple-darwin13.4.0:
-        CONFIG: osx_64_bootstraptruecross_target_platformosx-64tripletx86_64-apple-darwin13.4.0
-        UPLOAD_PACKAGES: 'True'
-      osx_64_bootstraptruecross_target_platformosx-arm64tripletarm64-apple-darwin20.0.0:
-        CONFIG: osx_64_bootstraptruecross_target_platformosx-arm64tripletarm64-apple-darwin20.0.0
         UPLOAD_PACKAGES: 'True'
       osx_64_bootstraptruecross_target_platformwin-64tripletx86_64-w64-mingw32:
         CONFIG: osx_64_bootstraptruecross_target_platformwin-64tripletx86_64-w64-mingw32
@@ -62,12 +50,6 @@ jobs:
       osx_arm64_bootstrapfalsecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu:
         CONFIG: osx_arm64_bootstrapfalsecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
-      osx_arm64_bootstrapfalsecross_target_platformosx-64tripletx86_64-apple-darwin13.4.0:
-        CONFIG: osx_arm64_bootstrapfalsecross_target_platformosx-64tripletx86_64-apple-darwin13.4.0
-        UPLOAD_PACKAGES: 'True'
-      osx_arm64_bootstrapfalsecross_target_platformosx-arm64tripletarm64-apple-darwin20.0.0:
-        CONFIG: osx_arm64_bootstrapfalsecross_target_platformosx-arm64tripletarm64-apple-darwin20.0.0
-        UPLOAD_PACKAGES: 'True'
       osx_arm64_bootstrapfalsecross_target_platformwin-64tripletx86_64-w64-mingw32:
         CONFIG: osx_arm64_bootstrapfalsecross_target_platformwin-64tripletx86_64-w64-mingw32
         UPLOAD_PACKAGES: 'True'
@@ -82,12 +64,6 @@ jobs:
         UPLOAD_PACKAGES: 'True'
       osx_arm64_bootstraptruecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu:
         CONFIG: osx_arm64_bootstraptruecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu
-        UPLOAD_PACKAGES: 'True'
-      osx_arm64_bootstraptruecross_target_platformosx-64tripletx86_64-apple-darwin13.4.0:
-        CONFIG: osx_arm64_bootstraptruecross_target_platformosx-64tripletx86_64-apple-darwin13.4.0
-        UPLOAD_PACKAGES: 'True'
-      osx_arm64_bootstraptruecross_target_platformosx-arm64tripletarm64-apple-darwin20.0.0:
-        CONFIG: osx_arm64_bootstraptruecross_target_platformosx-arm64tripletarm64-apple-darwin20.0.0
         UPLOAD_PACKAGES: 'True'
       osx_arm64_bootstraptruecross_target_platformwin-64tripletx86_64-w64-mingw32:
         CONFIG: osx_arm64_bootstraptruecross_target_platformwin-64tripletx86_64-w64-mingw32
