@@ -19,7 +19,7 @@ source:
 
 build:
   number: {{ build_num }}
-  skip: true  # [win64 and cross_target_platform != "win-64"]
+  skip: true  # [(win64 and cross_target_platform != "win-64") or cross_target_platform in ("osx-64", "osx-arm64")]
   detect_binary_files_with_prefix: false
   string: default_{{ PKG_HASH }}_{{ build_num }}    # [not bootstrap]
   string: boostrap_h{{ PKG_HASH }}_{{ build_num }}  # [bootstrap]
