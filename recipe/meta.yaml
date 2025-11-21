@@ -1,6 +1,6 @@
 {% set name = "binutils" %}
 {% set version = "2.45" %}
-{% set build_num = 2 %}
+{% set build_num = 3 %}
 {% if not bootstrap %}
 {% set build_num = build_num + 100 %}
 {% endif %}
@@ -47,7 +47,7 @@ outputs:
       ignore_run_exports:   # [win]
         - libwinpthread           # [win]
       string: default_{{ PKG_HASH }}_{{ build_num }}    # [not bootstrap]
-      string: boostrap_h{{ PKG_HASH }}_{{ build_num }}  # [bootstrap]
+      string: bootstrap_h{{ PKG_HASH }}_{{ build_num }}  # [bootstrap]
     requirements:
       build:
         - {{ compiler('cxx') }}
@@ -75,7 +75,7 @@ outputs:
       ignore_run_exports:   # [win]
         - libwinpthread           # [win]
       string: default_{{ PKG_HASH }}_{{ build_num }}    # [not bootstrap]
-      string: boostrap_h{{ PKG_HASH }}_{{ build_num }}  # [bootstrap]
+      string: bootstrap_h{{ PKG_HASH }}_{{ build_num }}  # [bootstrap]
     requirements:
       build:
         - {{ compiler('cxx') }}
@@ -118,7 +118,7 @@ outputs:
       merge_build_host: false
       detect_binary_files_with_prefix: false
       string: default_{{ PKG_HASH }}_{{ build_num }}    # [not bootstrap]
-      string: boostrap_h{{ PKG_HASH }}_{{ build_num }}  # [bootstrap]
+      string: bootstrap_h{{ PKG_HASH }}_{{ build_num }}  # [bootstrap]
     requirements:
       run:
         - {{ pin_subpackage("binutils_impl_" ~ cross_target_platform, exact=True) }}
@@ -134,7 +134,7 @@ outputs:
       detect_binary_files_with_prefix: false
       skip: true  # [cross_target_platform != target_platform]
       string: default_{{ PKG_HASH }}_{{ build_num }}    # [not bootstrap]
-      string: boostrap_h{{ PKG_HASH }}_{{ build_num }}  # [bootstrap]
+      string: bootstrap_h{{ PKG_HASH }}_{{ build_num }}  # [bootstrap]
     requirements:
       build:
       host:
