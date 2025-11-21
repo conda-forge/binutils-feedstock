@@ -1,5 +1,9 @@
 {% set name = "binutils" %}
 {% set version = "2.45" %}
+{% set build_num = 1 %}
+{% if not bootstrap %}
+{% set build_num = build_num + 100 %}
+{% endif %}
 
 package:
   name: binutils_split
@@ -14,20 +18,22 @@ source:
       - patches/0001-fallback-sysroot.diff
 
 build:
-  number: 0
-  skip: true  # [win64 and cross_target_platform != "win-64"]
+  number: {{ build_num }}
+  skip: true  # [(win64 and cross_target_platform != "win-64") or cross_target_platform in ("osx-64", "osx-arm64")]
   detect_binary_files_with_prefix: false
+  string: default_{{ PKG_HASH }}_{{ build_num }}    # [not bootstrap]
+  string: boostrap_h{{ PKG_HASH }}_{{ build_num }}  # [bootstrap]
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
-    - make                    # [osx]
-    - texinfo                 # [osx]
+    - make
+    - texinfo
     - flex                    # [osx]
     - pkg-config
   host:
-    - zstd
+    - zstd  # [not bootstrap]
   run:
 
 outputs:
@@ -48,7 +54,7 @@ outputs:
         - {{ stdlib('c') }}
         - pkg-config
       host:
-        - zstd
+        - zstd  # [not bootstrap]
       run:
       run_constrained:
         - binutils_impl_{{ cross_target_platform }} {{ version }}
@@ -75,14 +81,14 @@ outputs:
         - pkg-config
       host:
         - ld_impl_{{ cross_target_platform }} {{ version }}  # [cross_target_platform not in ("osx-arm64", "osx-64")]
-        - zstd
+        - zstd  # [not bootstrap]
       run:
         - {{ pin_subpackage("ld_impl_" ~ cross_target_platform, exact=True) }}  # [cross_target_platform not in ("osx-arm64", "osx-64")]
         - sysroot_{{ cross_target_platform }}  # [cross_target_platform not in ("win-64", "osx-arm64", "osx-64")]
         - m2w64-sysroot_{{ cross_target_platform }} >=12.0.0.r0  # [cross_target_platform == "win-64"]
     test:
       downstreams:
-        - gfortran_impl_{{ cross_target_platform }}  # [cross_target_platform != "win-64"]
+        #- gfortran_impl_{{ cross_target_platform }}  # [cross_target_platform != "win-64"]
         - gcc_impl_{{ cross_target_platform }}       # [cross_target_platform != "win-64"]
       commands:
         - {{ triplet }}-addr2line --help
