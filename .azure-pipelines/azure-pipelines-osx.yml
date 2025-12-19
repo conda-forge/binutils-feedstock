@@ -17,6 +17,9 @@ jobs:
       osx_64_bootstrapfalsecross_target_platformlinux-ppc64letripletpowerpc64le-conda-linux-gnu:
         CONFIG: osx_64_bootstrapfalsecross_target_platformlinux-ppc64letripletpowerpc64le-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+      osx_64_bootstrapfalsecross_target_platformlinux-riscv64tripletriscv64-conda-linux-gnu:
+        CONFIG: osx_64_bootstrapfalsecross_target_platformlinux-riscv64tripletriscv64-conda-linux-gnu
+        UPLOAD_PACKAGES: 'True'
       osx_64_bootstrapfalsecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu:
         CONFIG: osx_64_bootstrapfalsecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
@@ -31,6 +34,9 @@ jobs:
         UPLOAD_PACKAGES: 'True'
       osx_64_bootstraptruecross_target_platformlinux-ppc64letripletpowerpc64le-conda-linux-gnu:
         CONFIG: osx_64_bootstraptruecross_target_platformlinux-ppc64letripletpowerpc64le-conda-linux-gnu
+        UPLOAD_PACKAGES: 'True'
+      osx_64_bootstraptruecross_target_platformlinux-riscv64tripletriscv64-conda-linux-gnu:
+        CONFIG: osx_64_bootstraptruecross_target_platformlinux-riscv64tripletriscv64-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
       osx_64_bootstraptruecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu:
         CONFIG: osx_64_bootstraptruecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu
@@ -47,6 +53,9 @@ jobs:
       osx_arm64_bootstrapfalsecross_target_platformlinux-ppc64letripletpowerpc64le-conda-linux-gnu:
         CONFIG: osx_arm64_bootstrapfalsecross_target_platformlinux-ppc64letripletpowerpc64le-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+      osx_arm64_bootstrapfalsecross_target_platformlinux-riscv64tripletriscv64-conda-linux-gnu:
+        CONFIG: osx_arm64_bootstrapfalsecross_target_platformlinux-riscv64tripletriscv64-conda-linux-gnu
+        UPLOAD_PACKAGES: 'True'
       osx_arm64_bootstrapfalsecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu:
         CONFIG: osx_arm64_bootstrapfalsecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
@@ -61,6 +70,9 @@ jobs:
         UPLOAD_PACKAGES: 'True'
       osx_arm64_bootstraptruecross_target_platformlinux-ppc64letripletpowerpc64le-conda-linux-gnu:
         CONFIG: osx_arm64_bootstraptruecross_target_platformlinux-ppc64letripletpowerpc64le-conda-linux-gnu
+        UPLOAD_PACKAGES: 'True'
+      osx_arm64_bootstraptruecross_target_platformlinux-riscv64tripletriscv64-conda-linux-gnu:
+        CONFIG: osx_arm64_bootstraptruecross_target_platformlinux-riscv64tripletriscv64-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
       osx_arm64_bootstraptruecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu:
         CONFIG: osx_arm64_bootstraptruecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu
