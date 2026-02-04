@@ -22,27 +22,25 @@ fi
 
 CHOST="${triplet}"
 
-# for tool in $TOOLS; do
-#   tool_upper=$(echo "${tool}" | tr 'a-z+-.' 'A-ZX__')
-#   echo set "\"CONDA_BACKUP_${tool_upper}=%${tool_upper}%\""
-#   echo set "\"${tool_upper}=@CHOST@-${tool}.exe\""
-#   echo
-# done
+TOOLS_ACTIVATE=""
+TOOLS_DEACTIVATE=""
 
-# for tool in $TOOLS; do
-#   tool_upper=$(echo "${tool}" | tr 'a-z+-.' 'A-ZX__')
-#   echo set "\"${tool_upper}=%CONDA_BACKUP_${tool_upper}%\""
-#   echo set "\"CONDA_BACKUP_${tool_upper}=\""
-#   echo
-# done
-
+for tool in ${TOOLS}; do
+  tool_upper=$(echo "${tool}" | tr 'a-z+-.' 'A-ZX__')
+  TOOLS_ACTIVATE="${TOOLS_ACTIVATE} \\\\\n  \"${tool_upper},${CHOST}-${tool}\""
+  TOOLS_DEACTIVATE="${TOOLS_DEACTIVATE} \\\\\n  \"${tool_upper}\""
+done
 cp ${RECIPE_DIR}/scripts/* .
 
-find . -name "*activate*.*" -exec sed -i.bak "s|@IS_WIN@|${IS_WIN}|g"                   "{}" \;
-find . -name "*activate*.*" -exec sed -i.bak "s|@TOOLS@|${TOOLS}|g"                     "{}" \;
-find . -name "*activate*.*" -exec sed -i.bak "s|@CHOST@|${CHOST}|g"                     "{}" \;
-find . -name "*activate*.*" -exec sed -i.bak "s|@LIBRARY_PREFIX@|${LIBRARY_PREFIX}|g"   "{}" \;
-find . -name "*activate*.*" -exec sed -i.bak "s|@EXE_EXT@|${EXE_EXT}|g"                 "{}" \;
+find . -name "*activate*.*" -not -name "*.bak" -exec sed -i.bak "s|@IS_WIN@|${IS_WIN}|g"                   "{}" \;
+find . -name "*activate*.*" -not -name "*.bak" -exec sed -i.bak "s|@TOOLS_ACTIVATE@|${TOOLS_ACTIVATE}|g"   "{}" \;
+find . -name "*activate*.*" -not -name "*.bak" -exec sed -i.bak "s|@TOOLS_DEACTIVATE@|${TOOLS_DEACTIVATE}|g" "{}" \;
+find . -name "*activate*.*" -not -name "*.bak" -exec sed -i.bak "s|@CHOST@|${CHOST}|g"                     "{}" \;
+find . -name "*activate*.*" -not -name "*.bak" -exec sed -i.bak "s|@LIBRARY_PREFIX@|${LIBRARY_PREFIX}|g"   "{}" \;
+find . -name "*activate*.*" -not -name "*.bak" -exec sed -i.bak "s|@EXE_EXT@|${EXE_EXT}|g"                 "{}" \;
+
+cat activate-binutils.sh
+cat deactivate-binutils.sh
 
 mkdir -p ${PREFIX}/etc/conda/{de,}activate.d
 cp "${SRC_DIR}"/activate-binutils.sh ${PREFIX}/etc/conda/activate.d/activate-${PKG_NAME}.sh

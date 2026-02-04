@@ -17,67 +17,32 @@ _get_sourced_filename() {
     fi
 }
 
-# The arguments to this are:
-# 1. activation nature {activate|deactivate}
-# 2. toolchain nature {build|host|ccc}
-# 3. machine (should match -dumpmachine)
-# 4. prefix (including any final -)
-# 5+ program (or environment var comma value)
-# The format for 5+ is name{,,value}. If value is specified
-#  then name taken to be an environment variable, otherwise
-#  it is taken to be a program. In this case, which is used
-#  to find the full filename during activation. The original
-#  value is stored in environment variable CONDA_BACKUP_NAME
-#  For deactivation, the distinction is irrelevant as in all
-#  cases NAME simply gets reset to CONDA_BACKUP_NAME.  It is
-#  a fatal error if a program is identified but not present.
-_tc_activation() {
-  local act_nature="$1"; shift
-  local tc_prefix="$1"; shift
+# The arguments to this are space separated environment
+#  variable names. The value in CONDA_BACKUP_ is restore
+#  and the CONDA_BACKUP_ is removed.
+_tc_deactivation() {
   local thing
-  local newval
   local from
   local to
-  local pass
 
-  if [ "${act_nature}" = "activate" ]; then
-    from=""
-    to="CONDA_BACKUP_"
-  else
-    from="CONDA_BACKUP_"
-    to=""
-  fi
+  from="CONDA_BACKUP_"
+  to=""
 
-  for pass in check apply; do
-    for thing in "$@"; do
-      case "${thing}" in
-        *,*)
-          newval=$(echo "${thing}" | sed "s,^[^\,]*\,\(.*\),\1,")
-          thing=$(echo "${thing}" | sed "s,^\([^\,]*\)\,.*,\1,")
-          ;;
-        *)
-          newval="${CONDA_PREFIX}@LIBRARY_PREFIX@/bin/${tc_prefix}${thing}@EXE_EXT@"
-          if [ ! -x "${newval}" ] && [ "${pass}" = "check" ]; then
-            echo "ERROR: This cross-compiler package contains no program ${newval}"
-            return 1
-          fi
-          ;;
-      esac
-      if [ "${pass}" = "apply" ]; then
-        thing=$(echo "${thing}" | tr 'a-z+-.' 'A-ZX__')
-        eval oldval="\$${from}$thing"
-        if [ -n "${oldval}" ]; then
-          eval export "${to}'${thing}'=\"${oldval}\""
-        else
-          eval unset '${to}${thing}'
-        fi
-        if [ -n "${newval}" ]; then
-          eval export "'${from}${thing}=${newval}'"
-        else
-          eval unset '${from}${thing}'
-        fi
-      fi
-    done
+  for thing in "$@"; do
+    case "${thing}" in
+      *,*)
+        thing="${thing%%,*}"
+        ;;
+      *)
+        ;;
+    esac
+    eval oldval="\$${from}$thing"
+    if [ -n "${oldval:-}" ]; then
+      eval export "${to}'${thing}'=\"${oldval}\""
+    else
+      eval unset '${to}${thing}'
+    fi
+    eval unset '${from}${thing}'
   done
   return 0
 }
@@ -93,8 +58,7 @@ if [ "${CONDA_BUILD:-0}" = "1" ]; then
   env > /tmp/old-env-$$.txt
 fi
 
-_tc_activation \
-  deactivate @CHOST@- @TOOLS@
+_tc_deactivation @TOOLS_DEACTIVATE@
 
 if [ $? -ne 0 ]; then
   echo "ERROR: $(_get_sourced_filename) failed, see above for details"
