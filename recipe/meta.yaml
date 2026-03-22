@@ -1,6 +1,6 @@
 {% set name = "binutils" %}
 {% set version = "2.45.1" %}
-{% set build_num = 1 %}
+{% set build_num = 2 %}
 {% if bootstrap in ("true", "True", true) %}
 {% set build_str_prefix = "bootstrap" %}
 {% else %}
