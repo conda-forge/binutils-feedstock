@@ -5,82 +5,105 @@
 jobs:
 - job: osx
   pool:
-    vmImage: macOS-15
+    vmImage: $(VMIMAGE)
   strategy:
     matrix:
       osx_64_bootstrapfalsecross_target_platformlinux-64tripletx86_64-conda-linux-gnu:
         CONFIG: osx_64_bootstrapfalsecross_target_platformlinux-64tripletx86_64-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_64_bootstrapfalsecross_target_platformlinux-aarch64tripletaarch64-conda-linux-gnu:
         CONFIG: osx_64_bootstrapfalsecross_target_platformlinux-aarch64tripletaarch64-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_64_bootstrapfalsecross_target_platformlinux-ppc64letripletpowerpc64le-conda-linux-gnu:
         CONFIG: osx_64_bootstrapfalsecross_target_platformlinux-ppc64letripletpowerpc64le-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_64_bootstrapfalsecross_target_platformlinux-riscv64tripletriscv64-conda-linux-gnu:
         CONFIG: osx_64_bootstrapfalsecross_target_platformlinux-riscv64tripletriscv64-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_64_bootstrapfalsecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu:
         CONFIG: osx_64_bootstrapfalsecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_64_bootstrapfalsecross_target_platformwin-64tripletx86_64-w64-mingw32:
         CONFIG: osx_64_bootstrapfalsecross_target_platformwin-64tripletx86_64-w64-mingw32
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_64_bootstraptruecross_target_platformlinux-64tripletx86_64-conda-linux-gnu:
         CONFIG: osx_64_bootstraptruecross_target_platformlinux-64tripletx86_64-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_64_bootstraptruecross_target_platformlinux-aarch64tripletaarch64-conda-linux-gnu:
         CONFIG: osx_64_bootstraptruecross_target_platformlinux-aarch64tripletaarch64-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_64_bootstraptruecross_target_platformlinux-ppc64letripletpowerpc64le-conda-linux-gnu:
         CONFIG: osx_64_bootstraptruecross_target_platformlinux-ppc64letripletpowerpc64le-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_64_bootstraptruecross_target_platformlinux-riscv64tripletriscv64-conda-linux-gnu:
         CONFIG: osx_64_bootstraptruecross_target_platformlinux-riscv64tripletriscv64-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_64_bootstraptruecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu:
         CONFIG: osx_64_bootstraptruecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_64_bootstraptruecross_target_platformwin-64tripletx86_64-w64-mingw32:
         CONFIG: osx_64_bootstraptruecross_target_platformwin-64tripletx86_64-w64-mingw32
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_arm64_bootstrapfalsecross_target_platformlinux-64tripletx86_64-conda-linux-gnu:
         CONFIG: osx_arm64_bootstrapfalsecross_target_platformlinux-64tripletx86_64-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_arm64_bootstrapfalsecross_target_platformlinux-aarch64tripletaarch64-conda-linux-gnu:
         CONFIG: osx_arm64_bootstrapfalsecross_target_platformlinux-aarch64tripletaarch64-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_arm64_bootstrapfalsecross_target_platformlinux-ppc64letripletpowerpc64le-conda-linux-gnu:
         CONFIG: osx_arm64_bootstrapfalsecross_target_platformlinux-ppc64letripletpowerpc64le-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_arm64_bootstrapfalsecross_target_platformlinux-riscv64tripletriscv64-conda-linux-gnu:
         CONFIG: osx_arm64_bootstrapfalsecross_target_platformlinux-riscv64tripletriscv64-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_arm64_bootstrapfalsecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu:
         CONFIG: osx_arm64_bootstrapfalsecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_arm64_bootstrapfalsecross_target_platformwin-64tripletx86_64-w64-mingw32:
         CONFIG: osx_arm64_bootstrapfalsecross_target_platformwin-64tripletx86_64-w64-mingw32
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_arm64_bootstraptruecross_target_platformlinux-64tripletx86_64-conda-linux-gnu:
         CONFIG: osx_arm64_bootstraptruecross_target_platformlinux-64tripletx86_64-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_arm64_bootstraptruecross_target_platformlinux-aarch64tripletaarch64-conda-linux-gnu:
         CONFIG: osx_arm64_bootstraptruecross_target_platformlinux-aarch64tripletaarch64-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_arm64_bootstraptruecross_target_platformlinux-ppc64letripletpowerpc64le-conda-linux-gnu:
         CONFIG: osx_arm64_bootstraptruecross_target_platformlinux-ppc64letripletpowerpc64le-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_arm64_bootstraptruecross_target_platformlinux-riscv64tripletriscv64-conda-linux-gnu:
         CONFIG: osx_arm64_bootstraptruecross_target_platformlinux-riscv64tripletriscv64-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_arm64_bootstraptruecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu:
         CONFIG: osx_arm64_bootstraptruecross_target_platformlinux-s390xtriplets390x-conda-linux-gnu
         UPLOAD_PACKAGES: 'True'
+        VMIMAGE: macOS-15
       osx_arm64_bootstraptruecross_target_platformwin-64tripletx86_64-w64-mingw32:
         CONFIG: osx_arm64_bootstraptruecross_target_platformwin-64tripletx86_64-w64-mingw32
         UPLOAD_PACKAGES: 'True'
-    maxParallel: 19
+        VMIMAGE: macOS-15
   timeoutInMinutes: 360
   variables: {}
 
