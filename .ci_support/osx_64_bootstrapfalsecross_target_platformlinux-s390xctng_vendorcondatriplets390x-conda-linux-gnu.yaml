@@ -1,19 +1,19 @@
 MACOSX_DEPLOYMENT_TARGET:
-- '10.13'
+- '11.0'
 MACOSX_SDK_VERSION:
-- '10.13'
+- '11.0'
 bootstrap:
-- true
+- false
 c_stdlib:
 - macosx_deployment_target
 c_stdlib_version:
-- '10.13'
+- '11.0'
 channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
 cross_target_platform:
-- linux-64
+- linux-s390x
 ctng_vendor:
 - conda
 cxx_compiler:
@@ -25,7 +25,7 @@ macos_machine:
 target_platform:
 - osx-64
 triplet:
-- x86_64-conda-linux-gnu
+- s390x-conda-linux-gnu
 zip_keys:
 - - triplet
   - ctng_vendor

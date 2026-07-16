@@ -78,7 +78,7 @@ if [[ "$target_platform" == osx-* ]]; then
 fi
 
 if [[ "$target_platform" == osx-* || "$target_platform" == linux-* ]]; then
-  export LDFLAGS="$LDFLAGS -Wl,-rpath,$PREFIX/lib -fPIC"
+  export LDFLAGS="$LDFLAGS -fPIC"
   export CPPFLAGS="$CPPFLAGS -fPIC"
 fi
 
