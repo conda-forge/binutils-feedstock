@@ -31,7 +31,7 @@ c_stdlib:           # [win]
   - m2w64-sysroot   # [win]
 bootstrap:
   - true
-  - false
+  - false           # [not riscv64]
 zip_keys:
   -
     - triplet
