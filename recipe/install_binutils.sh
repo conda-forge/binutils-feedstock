@@ -4,6 +4,7 @@ set -e
 
 cd install
 
+# Artifacts were installed to ${SRC_DIR}/install${PREFIX}; copy recursively to ${PREFIX}
 find . -type f -exec bash -c 'mkdir -p /$(dirname {}) && cp {} /{}' ';'
 
 export TARGET="${triplet}"
@@ -42,4 +43,5 @@ done
 rm ${PREFIX}/bin/ld${EXEEXT} || true;
 rm ${PREFIX}/bin/${TARGET}-ld${EXEEXT} || true;
 rm ${SYSROOT}/bin/ld${EXEEXT} || true;
-
+# Share will collide with other impl packages
+rm -r ${PREFIX}/share || true;
