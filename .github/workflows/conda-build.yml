@@ -262,18 +262,6 @@ jobs:
             resize_partitions: False
             runs_on: ['ubuntu-latest']
             tools_install_dir: ~/miniforge3
-          - CONFIG: linux_aarch64_bootstrapfalsecross_target_platformwin-arm64tripletaarch64-w64-mingw32
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
-            STORE_BUILD_ARTIFACTS: False
-            UPLOAD_PACKAGES: True
-            build_workspace_dir: build_artifacts
-            docker_run_args: 
-            free_disk_space: skip
-            os: ubuntu
-            pagefile_size: 0
-            resize_partitions: False
-            runs_on: ['ubuntu-latest']
-            tools_install_dir: ~/miniforge3
           - CONFIG: linux_aarch64_bootstraptruecross_target_platformlinux-64tripletx86_64-conda-linux-gnu
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
             STORE_BUILD_ARTIFACTS: False
@@ -335,18 +323,6 @@ jobs:
             runs_on: ['ubuntu-latest']
             tools_install_dir: ~/miniforge3
           - CONFIG: linux_aarch64_bootstraptruecross_target_platformwin-64tripletx86_64-w64-mingw32
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
-            STORE_BUILD_ARTIFACTS: False
-            UPLOAD_PACKAGES: True
-            build_workspace_dir: build_artifacts
-            docker_run_args: 
-            free_disk_space: skip
-            os: ubuntu
-            pagefile_size: 0
-            resize_partitions: False
-            runs_on: ['ubuntu-latest']
-            tools_install_dir: ~/miniforge3
-          - CONFIG: linux_aarch64_bootstraptruecross_target_platformwin-arm64tripletaarch64-w64-mingw32
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
@@ -430,18 +406,6 @@ jobs:
             resize_partitions: False
             runs_on: ['ubuntu-latest']
             tools_install_dir: ~/miniforge3
-          - CONFIG: linux_ppc64le_bootstrapfalsecross_target_platformwin-arm64tripletaarch64-w64-mingw32
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
-            STORE_BUILD_ARTIFACTS: False
-            UPLOAD_PACKAGES: True
-            build_workspace_dir: build_artifacts
-            docker_run_args: 
-            free_disk_space: skip
-            os: ubuntu
-            pagefile_size: 0
-            resize_partitions: False
-            runs_on: ['ubuntu-latest']
-            tools_install_dir: ~/miniforge3
           - CONFIG: linux_ppc64le_bootstraptruecross_target_platformlinux-64tripletx86_64-conda-linux-gnu
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
             STORE_BUILD_ARTIFACTS: False
@@ -514,18 +478,6 @@ jobs:
             resize_partitions: False
             runs_on: ['ubuntu-latest']
             tools_install_dir: ~/miniforge3
-          - CONFIG: linux_ppc64le_bootstraptruecross_target_platformwin-arm64tripletaarch64-w64-mingw32
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
-            STORE_BUILD_ARTIFACTS: False
-            UPLOAD_PACKAGES: True
-            build_workspace_dir: build_artifacts
-            docker_run_args: 
-            free_disk_space: skip
-            os: ubuntu
-            pagefile_size: 0
-            resize_partitions: False
-            runs_on: ['ubuntu-latest']
-            tools_install_dir: ~/miniforge3
           - CONFIG: linux_riscv64_cross_target_platformlinux-64tripletx86_64-conda-linux-gnu
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
             STORE_BUILD_ARTIFACTS: False
@@ -587,18 +539,6 @@ jobs:
             runs_on: ['ubuntu-latest']
             tools_install_dir: ~/miniforge3
           - CONFIG: linux_riscv64_cross_target_platformwin-64tripletx86_64-w64-mingw32
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
-            STORE_BUILD_ARTIFACTS: False
-            UPLOAD_PACKAGES: True
-            build_workspace_dir: build_artifacts
-            docker_run_args: 
-            free_disk_space: skip
-            os: ubuntu
-            pagefile_size: 0
-            resize_partitions: False
-            runs_on: ['ubuntu-latest']
-            tools_install_dir: ~/miniforge3
-          - CONFIG: linux_riscv64_cross_target_platformwin-arm64tripletaarch64-w64-mingw32
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True

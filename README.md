@@ -78,13 +78,6 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_bootstrapfalsecross_target_platformwin-arm64tripletaarch64-w64-mingw32</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3695&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/binutils-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_bootstrapfalsecross_target_platformwin-arm64tripletaarch64-w64-mingw32" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
               <td>osx_64_bootstraptruecross_target_platformlinux-64tripletx86_64-conda-linux-gnu</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3695&branchName=main">
@@ -124,13 +117,6 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3695&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/binutils-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_bootstraptruecross_target_platformwin-64tripletx86_64-w64-mingw32" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_64_bootstraptruecross_target_platformwin-arm64tripletaarch64-w64-mingw32</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3695&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/binutils-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_bootstraptruecross_target_platformwin-arm64tripletaarch64-w64-mingw32" alt="variant">
                 </a>
               </td>
             </tr>
