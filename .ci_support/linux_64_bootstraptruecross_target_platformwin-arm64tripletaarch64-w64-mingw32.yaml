@@ -9,7 +9,7 @@ channel_sources:
 channel_targets:
 - conda-forge main
 cross_target_platform:
-- win-64
+- win-arm64
 ctng_vendor:
 - none
 cxx_compiler:
@@ -21,7 +21,7 @@ docker_image:
 target_platform:
 - linux-64
 triplet:
-- x86_64-w64-mingw32
+- aarch64-w64-mingw32
 zip_keys:
 - - triplet
   - ctng_vendor
