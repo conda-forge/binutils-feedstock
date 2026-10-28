@@ -1,5 +1,5 @@
 {% set name = "binutils" %}
-{% set version = "2.46.1" %}
+{% set version = "2.47" %}
 {% set build_num = 3 %}
 {% if bootstrap in ("true", "True", true) %}
 {% set build_str_prefix = "bootstrap" %}
@@ -16,7 +16,7 @@ source:
   - url:
       - https://ftp.gnu.org/gnu/binutils/binutils-{{ version }}.tar.bz2
       - https://mirrors.ocf.berkeley.edu/gnu/binutils/binutils-{{ version }}.tar.bz2
-    sha256: 324ed40ada2633a28eaa5d104ca5db165fd3cc3162cc1d48a7b7fa9c932da439
+    sha256: 3068128c75cda9f898ccb4211d360246e8e195ffcc9dfb655b23ae23a54800e8
     patches:
       - patches/0001-fallback-sysroot.diff
 
