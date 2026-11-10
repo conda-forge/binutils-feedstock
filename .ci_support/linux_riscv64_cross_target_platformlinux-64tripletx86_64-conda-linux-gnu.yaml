@@ -1,3 +1,5 @@
+DOCKER_PLATFORM:
+- linux/amd64
 bootstrap:
 - true
 c_stdlib:
