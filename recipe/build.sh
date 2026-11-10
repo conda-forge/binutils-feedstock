@@ -96,6 +96,7 @@ fi
   --build=$BUILD \
   --host=$HOST \
   --target=$TARGET \
+  --disable-werror \
   --enable-ld=default \
   --enable-plugins \
   --enable-lto \
