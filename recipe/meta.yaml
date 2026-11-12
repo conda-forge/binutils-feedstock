@@ -94,6 +94,7 @@ outputs:
         #- gfortran_impl_{{ cross_target_platform }}  # [cross_target_platform != "win-64"]
         - gcc_impl_{{ cross_target_platform }}       # [cross_target_platform != "win-64"]
       commands:
+        - test ! -f $PREFIX/share/info/as.info
         - {{ triplet }}-addr2line --help
         - {{ triplet }}-ar --help
         - {{ triplet }}-as --help                   # [cross_target_platform not in ("osx-arm64", "osx-64")]
@@ -142,6 +143,7 @@ outputs:
         - {{ pin_subpackage("binutils_impl_" ~ cross_target_platform, max_pin="x.x.x") }}
     test:
       commands:
+        - test -f $PREFIX/share/info/as.info
         - $PREFIX/bin/addr2line --help
         - $PREFIX/bin/ar --help
         - $PREFIX/bin/as --help       # [cross_target_platform not in ("osx-arm64", "osx-64")]
