@@ -5,6 +5,7 @@ triplet:
   - s390x-conda-linux-gnu
   - riscv64-conda-linux-gnu
   - x86_64-w64-mingw32
+  - aarch64-w64-mingw32
   - x86_64-apple-darwin13.4.0
   - arm64-apple-darwin20.0.0
 ctng_vendor:
@@ -16,6 +17,7 @@ ctng_vendor:
   - none
   - none
   - none
+  - none
 cross_target_platform:
   - linux-64
   - linux-ppc64le
@@ -23,12 +25,13 @@ cross_target_platform:
   - linux-s390x
   - linux-riscv64
   - win-64
+  - win-arm64
   - osx-64
   - osx-arm64
-cxx_compiler:       # [linux or win]
-  - gcc_bootstrap   # [linux or win]
-c_stdlib:           # [win]
-  - m2w64-sysroot   # [win]
+cxx_compiler:       # [linux or (win and not arm64)]
+  - gcc_bootstrap   # [linux or (win and not arm64)]
+c_stdlib:           # [win and not arm64]
+  - m2w64-sysroot   # [win and not arm64]
 bootstrap:
   - true
   - false           # [not riscv64]

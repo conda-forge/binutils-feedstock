@@ -42,6 +42,8 @@ get_triplet() {
     echo "arm64-apple-darwin20.0.0"
   elif [[ "$1" == win-64 ]]; then
     echo "x86_64-w64-mingw32"
+  elif [[ "$1" == win-arm64 ]]; then
+    echo "aarch64-w64-mingw32"
   else
     echo "unknown platform"
   fi

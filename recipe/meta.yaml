@@ -22,7 +22,7 @@ source:
 
 build:
   number: {{ build_num }}
-  skip: true  # [(win64 and cross_target_platform != "win-64") or cross_target_platform in ("osx-64", "osx-arm64")]
+  skip: true  # [(cross_target_platform == "win-arm64" and target_platform != "linux-64") or (win and arm64) or (win and cross_target_platform != target_platform) or cross_target_platform in ("osx-64", "osx-arm64")]
   detect_binary_files_with_prefix: false
 
 requirements:
@@ -87,12 +87,12 @@ outputs:
         - zstd  # [not bootstrap]
       run:
         - {{ pin_subpackage("ld_impl_" ~ cross_target_platform, exact=True) }}  # [cross_target_platform not in ("osx-arm64", "osx-64")]
-        - sysroot_{{ cross_target_platform }}  # [cross_target_platform not in ("win-64", "osx-arm64", "osx-64")]
+        - sysroot_{{ cross_target_platform }}  # [cross_target_platform not in ("win-64", "win-arm64", "osx-arm64", "osx-64")]
         - m2w64-sysroot_{{ cross_target_platform }} >=12.0.0.r0  # [cross_target_platform == "win-64"]
     test:
       downstreams:
-        #- gfortran_impl_{{ cross_target_platform }}  # [cross_target_platform != "win-64"]
-        - gcc_impl_{{ cross_target_platform }}       # [cross_target_platform != "win-64"]
+        #- gfortran_impl_{{ cross_target_platform }}  # [cross_target_platform not in ("win-64", "win-arm64")]
+        - gcc_impl_{{ cross_target_platform }}       # [cross_target_platform not in ("win-64", "win-arm64")]
       commands:
         - {{ triplet }}-addr2line --help
         - {{ triplet }}-ar --help
@@ -124,7 +124,7 @@ outputs:
         - {{ pin_subpackage("binutils_impl_" ~ cross_target_platform, exact=True) }}
     test:
       commands:
-        - $LD --help  # [cross_target_platform not in ("win-64", "osx-arm64", "osx-64")]
+        - $LD --help  # [cross_target_platform not in ("win-64", "win-arm64", "osx-arm64", "osx-64")]
         - $AR --help
 
   - name: binutils
