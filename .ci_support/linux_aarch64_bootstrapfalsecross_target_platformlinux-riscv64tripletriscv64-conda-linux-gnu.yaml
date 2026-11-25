@@ -1,3 +1,5 @@
+DOCKER_PLATFORM:
+- linux/aarch64
 bootstrap:
 - false
 c_stdlib:
@@ -15,9 +17,9 @@ ctng_vendor:
 cxx_compiler:
 - gcc_bootstrap
 cxx_compiler_version:
-- '14'
+- '15'
 docker_image:
-- quay.io/condaforge/linux-anvil-x86_64:alma10
+- quay.io/condaforge/linux-anvil-aarch64:alma10
 target_platform:
 - linux-aarch64
 triplet:
@@ -27,4 +29,4 @@ zip_keys:
   - ctng_vendor
   - cross_target_platform
 zstd:
-- '1.5'
+- '1.6'
